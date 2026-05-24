@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANI-STREAM | Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(0deg, #131313 0%, rgba(19, 19, 19, 0) 50%, rgba(19, 19, 19, 0.8) 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 177, 199, 0.4);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #aa8890;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffb1c7",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#201f1f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#002201",
+                        "on-primary-fixed": "#3f001c",
+                        "on-primary": "#650032",
+                        "on-surface-variant": "#e2bdc6",
+                        "primary-fixed": "#ffd9e2",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "inverse-primary": "#ba0060",
+                        "secondary-container": "#00e0ff",
+                        "surface": "#131313",
+                        "on-tertiary-fixed-variant": "#005304",
+                        "tertiary-fixed-dim": "#5de151",
+                        "secondary-fixed": "#a5eeff",
+                        "surface-variant": "#353534",
+                        "outline": "#aa8890",
+                        "surface-bright": "#3a3939",
+                        "outline-variant": "#5a3f47",
+                        "secondary": "#b9f1ff",
+                        "surface-tint": "#ffb1c7",
+                        "primary-fixed-dim": "#ffb1c7",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "tertiary-fixed": "#7afe6a",
+                        "secondary-fixed-dim": "#00daf8",
+                        "tertiary": "#5de151",
+                        "on-primary-fixed-variant": "#8e0048",
+                        "background": "#131313",
+                        "on-background": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#005f6d",
+                        "on-tertiary": "#003a02",
+                        "on-secondary": "#00363f",
+                        "error-container": "#93000a",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#003202",
+                        "primary-container": "#ff4993",
+                        "tertiary-container": "#16a81b",
+                        "on-secondary-fixed": "#001f25",
+                        "on-primary-container": "#59002b",
+                        "on-error": "#690005",
+                        "surface-container-low": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Sora"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "display-lg": ["Sora"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface/60 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center gap-12">
+<span class="font-display-lg text-headline-md font-extrabold text-primary tracking-tighter">ANI-STREAM</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:scale-105 transition-all" href="#">Browse</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors hover:scale-105" href="#">Seasonal</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors hover:scale-105" href="#">Movies</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors hover:scale-105" href="#">My List</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center bg-surface-container-high rounded-full px-4 py-2 border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md px-2 w-48" placeholder="Search anime..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-outline-variant hover:scale-105 transition-transform cursor-pointer">
+<img alt="User profile avatar" data-alt="A professional close-up headshot portrait of a stylish young adult with soft studio lighting. The person has a friendly expression and is positioned against a clean, neutral background that fits a high-end, premium streaming service profile. The aesthetic is modern and sophisticated, using a natural color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR0iUtIcSUrQVga1OuCgSBVbm0eOtXDrNasQiwSdMTL3It0GKjc3_aQ4zERrHsoVLGODbMWEzdKdCVWAf1rudfhDJDz-XQFdw1M4Xd1X73rxzoXv4FvJc2YChLnCGW0G3_6RcLzf9WeQhjhlbJxHDH4izBW1Pn7ymLsI8PwPd5i1lrTOcWZECfM79o8-czyFB1jw0Az6VVwQYElJb8N2tpdGb3iXma6fvAPBtNbbkFX-aAjQ2rZbdmonUcTabJCxccvspGbS9zQPMm"/>
+</div>
+</div>
+</nav>
+<main class="pb-24">
+<!-- Hero Slider Section -->
+<section class="relative h-[870px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Cinematic wide shot of a dark fantasy anime landscape featuring a sprawling gothic castle atop a jagged mountain under a blood-red moon. The sky is filled with swirling dark clouds and ethereal embers. High-contrast lighting with deep charcoal shadows and vibrant neon pink highlights creates a premium, immersive atmosphere. The style is detailed, high-octane, and epic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC4l-bjtFAkez5zHcT2sDS4wy7UVjgCLoX399VmOYUuzhH8Uqyk8TvaK7uMs_MGgUR1ptlfqClVpRjpIvxPaRpZQZzUI99Rkh8WenEX7hAl7aEy9gOQomAhSQCBfBhDO06WbX8UvX2YP46d2m4TexyJ1exu6LsX-DJrvY4j0qD7gjN1r6OD9xFXVyD0S7CB6bzITzYTi7u_H-nryFwooxdm2_caet5FtiYCeHZXgzfWENrEmZOUFL4cnrqY4h_LMfxMB7smNhdNQ1Yl')"></div>
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="absolute inset-0 flex flex-col justify-end px-gutter pb-24 md:pb-32 max-w-container-max mx-auto">
+<div class="max-w-2xl space-y-6">
+<div class="flex items-center gap-3">
+<span class="bg-secondary-container/20 text-secondary px-3 py-1 rounded-full font-label-sm text-label-sm border border-secondary/30 uppercase tracking-widest">Trending Now</span>
+<span class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]" data-weight="fill">star</span> 9.8 Rating
+                        </span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-none text-glow">BLOODBOUND: THE ETERNAL NIGHT</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-xl">In a world where shadows hunt the living, one warrior must embrace the darkness to save the last bastion of humanity. Experience the seasonal masterpiece everyone is talking about.</p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-on-primary font-bold px-8 py-4 rounded-lg flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-weight="fill">play_arrow</span>
+                            Watch Now
+                        </button>
+<button class="bg-white/10 backdrop-blur-md text-on-surface font-bold px-8 py-4 rounded-lg flex items-center gap-2 border border-white/20 hover:bg-white/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined">info</span>
+                            More Info
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Rails -->
+<div class="px-gutter space-y-16 -mt-12 relative z-10 max-w-container-max mx-auto">
+<!-- Continue Watching -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-3">
+                    Continue Watching
+                    <span class="w-1.5 h-6 bg-primary rounded-full"></span>
+</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Progress Card 1 -->
+<div class="group relative aspect-video bg-surface-container rounded-xl overflow-hidden border border-white/5 cursor-pointer hover:border-primary/50 transition-all">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cinematic backdrop of a futuristic cyberpunk city at night with raining neon lights in pink and blue. The scene is immersive and atmospheric, reflecting a high-quality anime production. Deep blacks and high-contrast glowing elements create a premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiqZ312w_Rk3mR0KzXpHP55KcWEoT8C8DvE0p1TUGWyp0TIw6eDiN4CfB0hMmDhosE4vNP4Fj0CBKyhAyKy9nW1epjlk2kr0oQN3dodUqy-LjXN0spth2QWib7YYnDfVSqgAH15_IMvUo1vBOs1-YsRmk0B91Mui5RMI5rbHuIz0eoISWnP6a0I6PlWn58Y4r7U_4ywVOMkmOsdBhXCV8TyQng7j7sZ1kUfDE1_ENBwI6_bo0B0uQA4xfYBThxO2ZZeFLA3Io5H3-I"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-4">
+<p class="font-bold text-on-surface truncate">Shadow Protocol</p>
+<p class="text-label-sm text-on-surface-variant">S1 : E8 • 14m left</p>
+<div class="w-full h-1 bg-white/20 rounded-full mt-2">
+<div class="h-full bg-primary rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="bg-primary text-on-primary rounded-full p-3 shadow-xl">
+<span class="material-symbols-outlined text-[32px]" data-weight="fill">play_circle</span>
+</div>
+</div>
+</div>
+<!-- Progress Card 2 -->
+<div class="group relative aspect-video bg-surface-container rounded-xl overflow-hidden border border-white/5 cursor-pointer hover:border-primary/50 transition-all">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Detailed anime-style art of a serene mountain landscape during sunset, with cherry blossom petals falling gently in the wind. The lighting is warm and golden, contrasting with deep purple shadows. A high-end, cinematic look suitable for a premium streaming experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARekiBRWwtrQlJ5tdFdPyKmYb-yiONERsWm9Qo8imiT06RoMNmW9FbSLYzLq3fRGMBTYEkneBxIrZvfCnKxzgq9quxiJbCkrHNvHcUWMWNUKEJ1auP1qDurkfM8Aexank23QEhRnVyw1XSpxBP8GL9QRVj1pnlqRbYcBCAqJLgctfEeWz4ZhHoZJCBDHOYwnabvfwnvddcy8GHoWSQ9iox3KyeH_EYRwI1i3fLXNB1tXkMHeHXC6TeuqxuHLg_5x198CY1KrEwq3az"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-4">
+<p class="font-bold text-on-surface truncate">Zenith of the Soul</p>
+<p class="text-label-sm text-on-surface-variant">S3 : E12 • 2m left</p>
+<div class="w-full h-1 bg-white/20 rounded-full mt-2">
+<div class="h-full bg-primary rounded-full" style="width: 92%;"></div>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="bg-primary text-on-primary rounded-full p-3 shadow-xl">
+<span class="material-symbols-outlined text-[32px]" data-weight="fill">play_circle</span>
+</div>
+</div>
+</div>
+<!-- More cards would go here -->
+</div>
+</section>
+<!-- Trending Now - Large Posters -->
+<section>
+<div class="flex justify-between items-end mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-3">
+                        Trending Now
+                        <span class="w-1.5 h-6 bg-secondary rounded-full shadow-[0_0_10px_#00e0ff]"></span>
+</h2>
+<a class="text-primary font-label-sm text-label-sm uppercase tracking-widest hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+<!-- Poster Card 1 -->
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden glass-card cursor-pointer hover:scale-[1.02] transition-all">
+<img class="w-full h-full object-cover" data-alt="A vertical anime poster of a powerful female warrior standing before a massive mecha robot. The style is sleek and modern with vibrant electric blue and deep black colors. Cinematic lighting emphasizes the scale of the robot and the determination on the character's face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAElluTvb-1154RrJsIU9M6MkCkQ5nZzDq8AKs2of3whm59bmO2vcKUUIyyIjED741Kj9iz_fw1bUTwaPsN4aUpQ41SQpOgl3BW3MgbKirblT7M-dsYY8LvZj_7edOIZ0roXWnJqUUtKq5s5xdzJdHhQpmKbCmhywyfRYQkllkPcd67WFA72iMf5MQEc8_jgFvZjkb4VU9xsrLyyd0hZx0IsQNL2RO8Rhw7r8cmVc7FA17961eicUTeXOlXCe_in5WXVp0Zgvdfllc0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
+<div class="flex gap-2 mb-2">
+<span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded font-label-sm border border-primary/20">NEW</span>
+<span class="bg-secondary/20 text-secondary text-[10px] px-2 py-0.5 rounded font-label-sm border border-secondary/20">HD</span>
+</div>
+<h3 class="font-bold text-on-surface">Iron Vanguard</h3>
+<p class="text-[12px] text-on-surface-variant">Action • Sci-Fi</p>
+</div>
+</div>
+<!-- Poster Card 2 -->
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden glass-card cursor-pointer hover:scale-[1.02] transition-all">
+<img class="w-full h-full object-cover" data-alt="Vertical anime poster featuring a mystical forest at night where spirits are glowing with a soft green light. A young boy in traditional robes is looking up in awe. The color palette is rich with emerald greens and deep charcoals, conveying a sense of wonder and exclusivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAsNtrlGiJrS2JTBrygAKSCr_RWTpivMrBJR7PeLptWlgzBXGmgZeyRVm4PzREbJsPKmHOGbO2YWpg3SqR-WvzWzAH3LuFaAwJYpc4Vjul4NTrhjZnusHWK_lCytsU0hk42wIzR9Yzjb-LsVT2CikgF1_fGnPtVEdHa1SNx4217PTaVi4N04siJWXhaK78fKc0bWwcech3mFEmvmR9oJd_PsvHddTL5o5ev-P3erJ80-gz9uR94AgpMecTB0lD4VMjLUX2rwsoUAQC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
+<div class="flex gap-2 mb-2">
+<span class="bg-tertiary/20 text-tertiary text-[10px] px-2 py-0.5 rounded font-label-sm border border-tertiary/20">HOT</span>
+</div>
+<h3 class="font-bold text-on-surface">Forest of Whispers</h3>
+<p class="text-[12px] text-on-surface-variant">Fantasy • Drama</p>
+</div>
+</div>
+<!-- Poster Card 3 -->
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden glass-card cursor-pointer hover:scale-[1.02] transition-all">
+<img class="w-full h-full object-cover" data-alt="Intense vertical anime art of two rivals facing each other in a ruined city under a stormy sky. Lightning flashes illuminate the scene, casting long shadows. The style is gritty and premium, focusing on high-octane action and dramatic tension. Deep blacks and vibrant electrical accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYPql33Nom2YWJba_UHm_AW1X8wQOOMTUL027wyROxSQ6CaDb9sM8d551HTDrxtHEg1NKgR5psW8wenvWMsXUk7LhKIJJiVpeGFMT7d2Av5B86ZrrLeo7I_KtbGPZikOgTZvzheHTUKFDtrOcILK8PnkS6QIstJnTByxPqDTgv0b4xoMfNV65Ocwp5ePj74f-tT5tKtFVnafgPHAFHDF8cELiSiyngFiYmRXoi98KI1BtmKHtY4lvdP92EWEroIMp0GCycZjgZR3HQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
+<h3 class="font-bold text-on-surface">Dual Destinies</h3>
+<p class="text-[12px] text-on-surface-variant">Action • Shonen</p>
+</div>
+</div>
+<!-- Poster Card 4 -->
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden glass-card cursor-pointer hover:scale-[1.02] transition-all">
+<img class="w-full h-full object-cover" data-alt="Vertical anime art representing a psychological thriller. A cracked mirror reflecting multiple versions of a character's face. The mood is dark and immersive, with a limited color palette of cold blues and sharp whites against a black background. Sophisticated and curated feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8erXr2T0eRm0UEVW6E8pD4-fp-ltttzrTkuEne5neGPNCOPut-0AsPYzsWU0RUL4zGKQpnvUz3t3SYuhviUE1thsQFDV9kMS4l0Ui8RNpKCTUJOp2c7ZlnKt8lLMMXYjNlLQ8Bnauqt4x0b9Zxoz-4Nw625Tbw_Te6Plb6glcyHjJM5_PZNyOt0jPS8OdSzc_B2oSfgjvwbIKAqMVhrMRVABubGik16-igNnuXPsdW5wsCZSpo_4K-Tr8D6CbUVhsNSfV-YmOJaHe"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
+<h3 class="font-bold text-on-surface">Fractured Minds</h3>
+<p class="text-[12px] text-on-surface-variant">Psychological • Mystery</p>
+</div>
+</div>
+<!-- Poster Card 5 -->
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden glass-card cursor-pointer hover:scale-[1.02] transition-all">
+<img class="w-full h-full object-cover" data-alt="Stunning vertical anime scenery of a futuristic space station orbiting a vibrant purple gas giant. Spaceships leave light trails in the void. The lighting is ethereal and high-key, creating a sense of vastness and adventure. A premium, official production aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACpm59srDOvl3FpZ1hiZcYxvKfgyZVQgKK8Y0VTlbk-_9KKnrFco7npmhEZoCy4c6uhec5fiUQmdIhYFFLvahqrLz00gAFV0_rw7nYobH3NfIAkGzD-Hs3vVxDcOtoCLNHysl0tivHJOkc6YURJpi-9_dDgTZawpjqPJgTcnXYBV-xIN5dlr5BOOzHxggoMeroowPvndiP6HfRnxHV5lAATiu6WaQYKX5_Cg7nfUUGrEqvDi0QcHrpng7J1EdDvrKDxHLKyTn34i3y"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
+<h3 class="font-bold text-on-surface">Starbound Voyage</h3>
+<p class="text-[12px] text-on-surface-variant">Adventure • Space</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Seasonal Highlights - Bento Grid -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-3">
+                    Seasonal Highlights
+                    <span class="w-1.5 h-6 bg-tertiary rounded-full"></span>
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[600px]">
+<div class="md:col-span-2 md:row-span-2 group relative rounded-2xl overflow-hidden glass-card cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A large, cinematic anime illustration of a futuristic sports arena filled with thousands of fans and holographic displays. The central focus is a player preparing for a high-stakes match. The color palette is vibrant and energetic, with neon sakura pink and electric blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ_23bMU4PKuq8KUV6O10JESsEiaIrq6cnJy_dN41G3UCBGrY6tZbAqufc8ljVjJIVcPXYZdhSw0k6S-fB6zPsgvuiu7ts0p8KJRYl4Klmi7dfLCgT1gagnqG3XO0_TNg42dxCPYzYie5VaNpusspwqF9oxFrV_qeFaI3Qdh75Tc2Mp33O8z_1q85bAMgca81cCbS7U_r4ehTK6h0qiRQ3-h6ie7D5nV_mYxu1_c6Ziz0mNDyeu4Q1AoS5RCITezY9TqWvmLkm51_i"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-tertiary font-label-sm text-label-sm bg-tertiary/10 px-3 py-1 rounded-full border border-tertiary/30 mb-4 inline-block">EPISODE 24 OUT NOW</span>
+<h3 class="font-display-lg text-headline-md md:text-display-lg text-on-surface leading-tight">NEON STRIKERS: GRAND FINALE</h3>
+<p class="text-on-surface-variant mt-2 max-w-md">The championship reaches its peak as Ryu faces his greatest challenge yet. Stream the final episode in 4K.</p>
+</div>
+</div>
+<div class="md:col-span-2 group relative rounded-2xl overflow-hidden glass-card cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An artistic anime-style kitchen scene with soft morning sunlight streaming through a window. The steam rises from a bowl of ramen, creating a cozy and warm atmosphere. The lighting is soft and golden, with high attention to detail in the textures and colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy56rttWmcR7nJweLu-BNpW9yGp0AIGmN2sM6cRTAWwrluUL6Z-F2S-qw9oxvhye3993wHWB_CclybcvjPXAr9w3gHmWDkHvuAd3vfOm42v_v8oVxS7e6ppfu86Oq7VnqLH3y9hQ3l-6yoVLrbKvMgJNmKEiCkHGyXOGAbSWllmx-1WhMCsaV_FTpa-XBM4eS1e6Bm11jWwMNPfBGzRFFwd3pPhRUajIXMNmJirVc79TV28_x7GnsWj_A1MzqMkSpFtxv8Jskd7SWw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Gourmet Spirit</h3>
+<p class="text-on-surface-variant text-body-md">A culinary journey through time.</p>
+</div>
+</div>
+<div class="group relative rounded-2xl overflow-hidden glass-card cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Whimsical anime art of a hidden village in the clouds, with floating islands and waterfalls flowing into the void. The sky is a gradient of deep indigo and violet with bright stars. High-end production quality with an immersive feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfBgnFlHdbh5_YCZEPmqgQ5IUzxbLAaEoMPUMYxJ7tyGWH4VgHDOKwmJm5xddpU0zBHPKG_kv2YoiCodTa0I4MvQfrQkYGwfGkE81j-sPf786fNa-Q9iyLyTbYMIDrBJHqkEuLWWCtEdYAqVDYSokWH14zVv6r9xRNehdpiZzK28NFRYh4fgKwDjCeyEtYejMK0FnV-C8ukplfFDZyTxEKiBMKMbpAvBxxEctTtOUkYE7yq6V5uB9ZpROnnwxHnTaqP9U3cADaGy7X"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4">
+<h3 class="font-bold text-on-surface">Cloudborne</h3>
+</div>
+</div>
+<div class="group relative rounded-2xl overflow-hidden glass-card cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic anime shot of a data center in the far future, with glowing circuit patterns on the walls and floors. A character is hacking into a massive mainframe. The style is tech-focused, dark, and immersive with neon pink lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF5fZA1k-3lj3EvF0rw_Kjgt1Qm1d7ASOY8W8YTkQpqohDuOVSdRO9_H7heC1KBbJVAylW-LCopWSltshnmgbrjgli1DlmuXb-mGP58JsqIX8Es9SoYT_Od8M15QBdyvtAKMtXc3QHxD_44d-D6Ptfw2dkWij-xd7eceX-BBZ7vYONWh8BGJAKyjjddzkyPOrUahgrt4lvhpZBqygofyZbSFlt8f-rdMRXkDzzpzU9kb7J-jX7Cv5uf6g5K1F0f_2HmSHhCam3LUwZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4">
+<h3 class="font-bold text-on-surface">Data Breach</h3>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-gutter flex flex-col items-center gap-6 bg-surface-container-lowest border-t border-outline-variant">
+<span class="font-display-lg text-headline-md text-primary">ANI-STREAM</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors" href="#">Help Center</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors" href="#">Contact Us</a>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md text-center opacity-60">© 2024 ANI-STREAM. High-Octane Streaming Experience.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 md:hidden bg-surface-container/80 backdrop-blur-2xl border-t border-white/5 shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-weight="fill">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">bookmarks</span>
+<span class="font-label-sm text-label-sm">Watchlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for hero buttons
+        const heroBtns = document.querySelectorAll('button');
+        heroBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'scale(1.02)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+
+        // Sticky Nav Blur Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface/90');
+            } else {
+                nav.classList.remove('bg-surface/90');
+            }
+        });
+    </script>
+</body></html>

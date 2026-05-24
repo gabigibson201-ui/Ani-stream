@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniControl - Admin Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-pink:focus {
+            box-shadow: 0 0 15px rgba(255, 177, 199, 0.3);
+            border-color: #ffb1c7;
+        }
+        .scale-105-hover:hover {
+            transform: scale(1.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for cinema feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffb1c7;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#b9f1ff",
+                      "on-tertiary-fixed-variant": "#005304",
+                      "surface": "#131313",
+                      "surface-variant": "#353534",
+                      "tertiary-container": "#16a81b",
+                      "surface-container-low": "#1c1b1b",
+                      "secondary-fixed": "#a5eeff",
+                      "on-background": "#e5e2e1",
+                      "background": "#131313",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-bright": "#3a3939",
+                      "outline-variant": "#5a3f47",
+                      "secondary-fixed-dim": "#00daf8",
+                      "on-primary": "#650032",
+                      "primary-fixed": "#ffd9e2",
+                      "primary-container": "#ff4993",
+                      "on-primary-container": "#59002b",
+                      "tertiary-fixed-dim": "#5de151",
+                      "on-tertiary-fixed": "#002201",
+                      "on-secondary-container": "#005f6d",
+                      "inverse-primary": "#ba0060",
+                      "on-error": "#690005",
+                      "tertiary": "#5de151",
+                      "primary-fixed-dim": "#ffb1c7",
+                      "surface-dim": "#131313",
+                      "inverse-on-surface": "#313030",
+                      "error-container": "#93000a",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e5e2e1",
+                      "on-secondary-fixed-variant": "#004e5a",
+                      "outline": "#aa8890",
+                      "on-tertiary-container": "#003202",
+                      "inverse-surface": "#e5e2e1",
+                      "on-tertiary": "#003a02",
+                      "on-surface-variant": "#e2bdc6",
+                      "tertiary-fixed": "#7afe6a",
+                      "surface-container": "#201f1f",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#ffb1c7",
+                      "on-primary-fixed-variant": "#8e0048",
+                      "surface-container-highest": "#353534",
+                      "on-secondary-fixed": "#001f25",
+                      "primary": "#ffb1c7",
+                      "on-primary-fixed": "#3f001c",
+                      "secondary-container": "#00e0ff",
+                      "on-secondary": "#00363f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "container-max": "1440px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Sora"],
+                      "display-lg-mobile": ["Sora"],
+                      "display-lg": ["Sora"],
+                      "label-sm": ["JetBrains Mono"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container dark:bg-surface-container-high backdrop-blur-xl border-r border-white/10 shadow-2xl z-50 flex flex-col py-8 gap-unit">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tighter">AniControl</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm opacity-70">Global Admin</p>
+</div>
+<nav class="flex-grow flex flex-col px-4 gap-2">
+<!-- Overview Active -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-primary/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="subscriptions">subscriptions</span>
+<span class="font-body-md">Library Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md">User Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="font-body-md">Content Moderation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 py-3 bg-primary-container text-on-primary-container font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="broadcast_on_home">broadcast_on_home</span>
+                Broadcast Alert
+            </button>
+<div class="mt-6 flex items-center gap-3 px-2">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary/30" data-alt="A professional close-up portrait of a high-ranking digital administrator in a futuristic, tech-driven setting. The individual has sharp features and is illuminated by a cool, blue ambient light with hints of neon sakura pink in the background. The style is cinematic, high-definition, and evokes a sense of expertise and authority in a premium streaming ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-o9OmJ0I1eJ_6tLw4z1ayzMWUW96H_RO6LLFg6f7QdXC5PsfHVl0Kybo1rh9Mfb04mpGs24e2XqMG8SgDJRPL7PXzubChTU6OPLGr8LHhfukJaoLYr_nyguW0viaeLxZGBymvVkXDx0S7zvfocPWIm-UwfdbfojM1tf_vEFcaa7dK4cZgj9832kJkbMPXoKhcNgVZ4fkg-NTjNZ1s6b4NQXpAvdoqC7saFGYBwFZOdMhfmqveSLdQPtZPFYyiW_whfxQeqClie-15"/>
+<div class="overflow-hidden">
+<p class="font-bold text-on-surface truncate">Admin Alpha</p>
+<p class="text-xs text-on-surface-variant">System Master</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Predicted Component) -->
+<header class="h-20 w-full fixed top-0 z-40 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border-b border-white/5 flex justify-between items-center pl-72 pr-margin-desktop">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md text-primary font-extrabold">Admin Control Center</span>
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Direct Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Audit Logs</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden xl:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="bg-surface-container-high border-none rounded-full pl-10 pr-4 py-2 w-64 glow-pink text-sm focus:ring-0" placeholder="Search system records..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-secondary-fixed-dim hover:bg-white/5 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-secondary-fixed-dim hover:bg-white/5 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+<button class="bg-secondary-container text-on-secondary py-2 px-6 rounded-full font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
+                Deploy Update
+            </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pl-72 pt-28 pr-margin-desktop pb-12 min-h-screen">
+<!-- Hero Summary Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<!-- Users Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between group cursor-default">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-sm font-label-sm text-secondary uppercase tracking-widest mb-1">Total Users</p>
+<h2 class="font-display-lg text-display-lg leading-none">2.4M</h2>
+</div>
+<div class="bg-secondary/10 p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+</div>
+<div class="mt-4 flex items-end gap-2">
+<span class="text-tertiary font-bold text-sm">+12.5%</span>
+<div class="flex-grow h-8 flex items-end gap-1 pb-1">
+<!-- Simple visual sparkline -->
+<div class="w-full h-2 bg-tertiary/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-3/4"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Streams Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between group cursor-default">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-sm font-label-sm text-primary uppercase tracking-widest mb-1">Active Streams</p>
+<h2 class="font-display-lg text-display-lg leading-none">84.2K</h2>
+</div>
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div class="mt-4 flex items-end gap-2">
+<span class="text-primary font-bold text-sm">Peak Hours</span>
+<div class="flex-grow h-8 flex items-end gap-1">
+<div class="w-1 h-3 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-5 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-8 bg-primary rounded-full"></div>
+<div class="w-1 h-6 bg-primary rounded-full"></div>
+<div class="w-1 h-4 bg-primary/40 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Revenue Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between group cursor-default">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-sm font-label-sm text-tertiary-fixed-dim uppercase tracking-widest mb-1">Monthly Revenue</p>
+<h2 class="font-display-lg text-display-lg leading-none">$1.8M</h2>
+</div>
+<div class="bg-tertiary/10 p-2 rounded-lg text-tertiary">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<span class="text-on-surface-variant text-sm font-label-sm">Projecting +5% increase</span>
+</div>
+</div>
+<!-- System Status Quick Look -->
+<div class="glass-card p-6 rounded-xl flex flex-col justify-center border-l-4 border-tertiary">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-2">System Status</p>
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="absolute inset-0 bg-tertiary/40 rounded-full animate-ping"></div>
+<div class="w-4 h-4 rounded-full bg-tertiary relative z-10"></div>
+</div>
+<h3 class="font-headline-md text-headline-md text-tertiary">All Systems Optimal</h3>
+</div>
+<p class="text-xs text-on-surface-variant mt-2">Last check: 2 mins ago</p>
+</div>
+</div>
+<!-- Dashboard Body Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main Content Area (8 Cols) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<!-- Server Health Detailed Widget -->
+<section class="glass-card rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-white/5 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="monitoring">monitoring</span>
+                            Global Server Infrastructure
+                        </h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-label-sm">Asia-East: 24ms</span>
+<span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-label-sm">US-West: 42ms</span>
+</div>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Server Metric 1 -->
+<div class="p-4 bg-white/5 rounded-lg border border-white/5">
+<p class="text-xs font-label-sm text-on-surface-variant mb-4">CPU LOAD</p>
+<div class="relative h-24 flex items-end justify-center gap-1">
+<div class="w-3 h-[40%] bg-primary/20 rounded-t"></div>
+<div class="w-3 h-[60%] bg-primary/40 rounded-t"></div>
+<div class="w-3 h-[30%] bg-primary/20 rounded-t"></div>
+<div class="w-3 h-[85%] bg-primary rounded-t"></div>
+<div class="w-3 h-[45%] bg-primary/40 rounded-t"></div>
+</div>
+<p class="text-center mt-3 font-bold text-primary">64% <span class="text-xs font-normal text-on-surface-variant">Avg</span></p>
+</div>
+<!-- Server Metric 2 -->
+<div class="p-4 bg-white/5 rounded-lg border border-white/5">
+<p class="text-xs font-label-sm text-on-surface-variant mb-4">MEMORY USAGE</p>
+<div class="flex flex-col justify-center h-24">
+<div class="w-full bg-white/10 h-4 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[78%]"></div>
+</div>
+<div class="flex justify-between mt-2 text-xs">
+<span>Used: 499GB</span>
+<span>Total: 640GB</span>
+</div>
+</div>
+<p class="text-center mt-3 font-bold text-secondary">78% <span class="text-xs font-normal text-on-surface-variant">Allocated</span></p>
+</div>
+<!-- Server Metric 3 -->
+<div class="p-4 bg-white/5 rounded-lg border border-white/5">
+<p class="text-xs font-label-sm text-on-surface-variant mb-4">NETWORK I/O</p>
+<div class="flex flex-col items-center justify-center h-24 gap-1">
+<span class="material-symbols-outlined text-4xl text-tertiary" data-icon="speed">speed</span>
+<p class="font-label-sm text-tertiary">High Throughput</p>
+</div>
+<p class="text-center mt-3 font-bold text-tertiary">4.2 Gbps <span class="text-xs font-normal text-on-surface-variant">Live</span></p>
+</div>
+</div>
+</section>
+<!-- Featured Anime Performance Bento (Visual Representation) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass-card rounded-xl p-6 h-64 relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-20 transition-transform duration-700 group-hover:scale-110" data-alt="A cinematic and dramatic high-quality anime illustration featuring a futuristic cyberpunk city at night with neon lights reflecting off rainy streets. The color palette is dominated by deep blacks and vibrant neon sakura pinks. The composition is atmospheric, suggesting a high-stakes narrative in a premium streaming catalog, with a sense of excitement and official cinematic production quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLeC1jTcV-qZRVEiGe4vp-i_m8lb9Jez8rBwNmjIJPXIHEr4wUkmEvjmEI7klR1qVux2teN3BBVcHt89ooP1KNAkOHgB_X1lvdXQB3r5hFhA9nOoShMc82axPfCdr2QLL1Ugz4HvyGWX3xvglVHrW_O0w-90_jOjPBMKe2E5QcAfjpbREiu8al0j-mfY10Wk1cJqltcdw2BJgb3Njt-F-K6WAqqHMQPjG4rMyp9iyw2CIGQvPaLbFZ9CoulnhQhhd6wC1rvidLIzXz"/>
+<div class="relative z-10 flex flex-col h-full">
+<span class="px-2 py-1 bg-primary text-on-primary text-[10px] font-bold w-fit rounded-sm mb-2">TOP TRENDING</span>
+<h4 class="font-headline-md text-white mb-auto">Cyber Odyssey: Final Protocol</h4>
+<div class="flex items-center gap-4">
+<div>
+<p class="text-[10px] font-label-sm text-on-surface-variant">WATCH TIME</p>
+<p class="font-bold text-primary">1.2M Hrs</p>
+</div>
+<div class="w-px h-8 bg-white/10"></div>
+<div>
+<p class="text-[10px] font-label-sm text-on-surface-variant">COMPLETION</p>
+<p class="font-bold text-secondary">92%</p>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 h-64 relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-20 transition-transform duration-700 group-hover:scale-110" data-alt="A beautiful, serene anime landscape art piece showcasing a traditional Japanese temple surrounded by cherry blossoms under a soft, glowing full moon. The colors are lush greens and soft sakura pinks, creating a tranquil yet immersive atmosphere. This high-end digital painting represents the artistic variety of the platform's library, rendered in a sophisticated, cinematic theater-like style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQfFkOtbTXJfJYgjmC2_8wTsVAyXJHdMNAdMQ2DnWU0t8JT6ZHWA7fUoPvQt9cZ7G_yHLDUg0CFg0w9I8IAYAmPtjC2joCR3qat437KmWK2tUAgLtz1JlGDu23nbr9lsCCYyaCwA92m61kvCgjvHjbsVG1qGOT-zG_hAPLQHQE2NNlsDoZRC6O7DxVbEwc4Y-ki-oqaMgt3DMLC7SxWdf0NpzOSJmHTy0tjVl4ttqpbLjqGdPpMLRe9nC0ro9pmeyJOERicc055yl4"/>
+<div class="relative z-10 flex flex-col h-full">
+<span class="px-2 py-1 bg-secondary text-on-secondary text-[10px] font-bold w-fit rounded-sm mb-2">NEW UPLOAD</span>
+<h4 class="font-headline-md text-white mb-auto">Spirit of the Eternal Sakura</h4>
+<div class="flex items-center gap-4">
+<div>
+<p class="text-[10px] font-label-sm text-on-surface-variant">VIEWS (24H)</p>
+<p class="font-bold text-primary">450K</p>
+</div>
+<div class="w-px h-8 bg-white/10"></div>
+<div>
+<p class="text-[10px] font-label-sm text-on-surface-variant">RATING</p>
+<p class="font-bold text-tertiary">4.9/5</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Feed Area (4 Cols) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- Recent Activity Feed -->
+<section class="glass-card rounded-xl flex flex-col h-full max-h-[700px]">
+<div class="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-white/5">
+<h3 class="font-headline-md text-headline-md text-body-lg">Recent Activity</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="refresh">refresh</span>
+</div>
+<div class="p-6 overflow-y-auto space-y-6">
+<!-- Activity Item -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container z-10">
+<span class="material-symbols-outlined text-sm" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div class="w-px h-full bg-white/10 mt-2"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">New Episode Uploaded</p>
+<p class="text-xs text-on-surface-variant mt-1">"Vanguard S3 Ep 12" has been encoded and deployed to global CDN nodes.</p>
+<p class="text-[10px] font-label-sm text-secondary mt-2">2 minutes ago • SYSTEM</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container z-10">
+<span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span>
+</div>
+<div class="w-px h-full bg-white/10 mt-2"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Bulk User Import</p>
+<p class="text-xs text-on-surface-variant mt-1">50,000 users from regional partner "NipponStream" successfully migrated.</p>
+<p class="text-[10px] font-label-sm text-secondary mt-2">45 minutes ago • Admin Beta</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-on-error-container z-10">
+<span class="material-symbols-outlined text-sm" data-icon="report">report</span>
+</div>
+<div class="w-px h-full bg-white/10 mt-2"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Content Takedown</p>
+<p class="text-xs text-on-surface-variant mt-1">Manual DMCA strike executed on user-upload ID #99214 for copyright violation.</p>
+<p class="text-[10px] font-label-sm text-secondary mt-2">2 hours ago • Security Team</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container z-10">
+<span class="material-symbols-outlined text-sm" data-icon="terminal">terminal</span>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Database Optimization</p>
+<p class="text-xs text-on-surface-variant mt-1">Scheduled indexing completed for the Search/Discovery engine.</p>
+<p class="text-[10px] font-label-sm text-secondary mt-2">5 hours ago • SYSTEM</p>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-white/5 mt-auto">
+<button class="w-full py-2 text-sm font-bold text-on-surface-variant hover:text-primary transition-all">View All Activity Logs</button>
+</div>
+</section>
+<!-- Storage Info Quick Access -->
+<div class="glass-card p-6 rounded-xl">
+<h4 class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-4">Master Storage</h4>
+<div class="space-y-4">
+<div class="flex justify-between text-sm">
+<span>S3 Primary</span>
+<span class="font-bold">84% Full</span>
+</div>
+<div class="w-full bg-white/10 h-2 rounded-full">
+<div class="h-full bg-primary w-[84%] rounded-full shadow-[0_0_8px_rgba(255,177,199,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant">Estimated time to capacity: 14 days. Scale-up recommended.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple ambient pulse for health indicators
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('AniControl Admin Dashboard Initialized');
+            
+            // Interaction: Scale cards slightly on hover
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.classList.add('transition-all', 'duration-300');
+                });
+            });
+        });
+    </script>
+</body></html>

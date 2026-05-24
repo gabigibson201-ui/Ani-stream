@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANI-STREAM | Neon Genesis: Aftermath</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0e0e0e;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(to top, #131313 0%, rgba(19, 19, 19, 0.4) 50%, transparent 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(255, 177, 199, 0.4);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffb1c7",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#201f1f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#002201",
+                        "on-primary-fixed": "#3f001c",
+                        "on-primary": "#650032",
+                        "on-surface-variant": "#e2bdc6",
+                        "primary-fixed": "#ffd9e2",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "inverse-primary": "#ba0060",
+                        "secondary-container": "#00e0ff",
+                        "surface": "#131313",
+                        "on-tertiary-fixed-variant": "#005304",
+                        "tertiary-fixed-dim": "#5de151",
+                        "secondary-fixed": "#a5eeff",
+                        "surface-variant": "#353534",
+                        "outline": "#aa8890",
+                        "surface-bright": "#3a3939",
+                        "outline-variant": "#5a3f47",
+                        "secondary": "#b9f1ff",
+                        "surface-tint": "#ffb1c7",
+                        "primary-fixed-dim": "#ffb1c7",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "tertiary-fixed": "#7afe6a",
+                        "secondary-fixed-dim": "#00daf8",
+                        "tertiary": "#5de151",
+                        "on-primary-fixed-variant": "#8e0048",
+                        "background": "#131313",
+                        "on-background": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#005f6d",
+                        "on-tertiary": "#003a02",
+                        "on-secondary": "#00363f",
+                        "error-container": "#93000a",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#003202",
+                        "primary-container": "#ff4993",
+                        "tertiary-container": "#16a81b",
+                        "on-secondary-fixed": "#001f25",
+                        "on-primary-container": "#59002b",
+                        "on-error": "#690005",
+                        "surface-container-low": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-md": ["Sora"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface-container/60 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center gap-12">
+<span class="font-display-lg text-headline-md font-extrabold text-primary tracking-tighter">ANI-STREAM</span>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Browse</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Seasonal</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Movies</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">My List</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-high border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search anime..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant hover:scale-110 transition-transform cursor-pointer" data-alt="A cinematic close-up portrait of a professional male user in his late 20s with stylized features, set against a dark, tech-oriented background with neon pink and blue ambient lighting. The style is ultra-modern and high-contrast, matching a premium digital streaming service aesthetic. Soft rim lighting highlights the edges of the subject's face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyveI9abIc5dQ2RCXhRu1N3e9FmOr7x7G1J6B59BYFEVVYvNVyyZRMCGslRosbztPU2WBkvU7v77NI4148QDijYk16NjTrCohK89lZUX4MHPC7_M8HpzkBxGiFOF_a9M10JeTWj2R0yjEgGDqcAxWbijtA_GBuwpaXQdsWjznfBudi8O4LgIGP7zGlHg7dCEoy6CFHVUbns74LhlpXuvM5cdafJThU-mf1EJLc-mZz1OistWEm3XN7Fdgz7z5-Sc1kw2rdR16G4Foh"/>
+</div>
+</header>
+<main class="min-h-screen pb-24">
+<!-- Hero Section -->
+<section class="relative w-full h-[716px] md:h-[870px] overflow-hidden">
+<div class="absolute inset-0">
+<img alt="Series Hero Art" class="w-full h-full object-cover" data-alt="A breathtaking cinematic panoramic landscape of a futuristic neo-tokyo skyline at dusk, bathed in deep violets and glowing neon sakura pinks. Massive crystalline structures rise into the sky, reflecting the sunset colors. The art style is high-octane anime with intense detail, atmospheric fog, and dramatic lighting that establishes a dark yet vibrant cinematic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDenAo_LYtgJ0Yp_oIjbTWhJlYntHB0qcRC2bVws-Pv-udiwwhXeOLP9vvWSl0mqSfF6IPzkZR0gxqFp8fCTmFAUx5JLfpXtKYPIO95U7pfsle9rO8kvj24s2VD1-sREvPUdN2LtCBFXbfGI6tZQQlBLNbe0jblt-BBRjxLrpsRGE5CJxzMcOFQJ5fu7tP6JKOyKF0aT3x9SbkyxaFcsdF5MGssT07N5hElNguWQzWEFjg-ewny1q448rdELrJrqQPx3Zjlm1kyjkGr"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full px-gutter md:px-margin-desktop pb-16 z-10">
+<div class="max-w-3xl space-y-6">
+<div class="flex gap-3">
+<span class="font-label-sm text-label-sm px-3 py-1 bg-primary text-on-primary rounded-full shadow-[0_0_10px_rgba(255,177,199,0.3)]">SEASON 2</span>
+<span class="font-label-sm text-label-sm px-3 py-1 bg-surface-container-highest text-secondary rounded-full border border-secondary/30">TRENDING #1</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-glow uppercase tracking-tight font-extrabold leading-none">Neon Genesis: Aftermath</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">
+                        In a world rebuilt from ashes, the survivors face a new celestial threat. As the veil between dimensions thins, humanity's last hope rests on the shoulders of those who refused to let go of the past.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="flex items-center gap-2 px-8 py-4 bg-primary text-on-primary font-bold rounded-lg hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                            Watch Episode 1
+                        </button>
+<button class="flex items-center gap-2 px-8 py-4 bg-surface-container/60 backdrop-blur-md border border-white/20 text-on-surface font-bold rounded-lg hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined">add</span>
+                            Add to Watchlist
+                        </button>
+<button class="flex items-center justify-center w-14 h-14 bg-surface-container/60 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Section -->
+<section class="px-gutter md:px-margin-desktop mt-[-40px] relative z-20">
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Main Content (Tabs) -->
+<div class="flex-grow space-y-8">
+<!-- Tab Headers -->
+<div class="flex border-b border-white/10 gap-8">
+<button class="pb-4 text-primary font-bold border-b-2 border-primary transition-all" id="tab-episodes" onclick="switchTab('episodes')">Episodes</button>
+<button class="pb-4 text-on-surface-variant font-medium hover:text-on-surface transition-all" id="tab-related" onclick="switchTab('related')">Related Anime</button>
+<button class="pb-4 text-on-surface-variant font-medium hover:text-on-surface transition-all" id="tab-comments" onclick="switchTab('comments')">Comments (1.2k)</button>
+</div>
+<!-- Episodes Panel -->
+<div class="space-y-6" id="panel-episodes">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Season 2 Episodes</h3>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+<span>Recent First</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Episode Card 1 -->
+<div class="group relative bg-surface-container/40 rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 border border-white/5 cursor-pointer">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Episode 1 Thumbnail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A high-contrast cinematic still of a futuristic laboratory where a lone character stands before a giant glowing core. The scene is illuminated by electric blue sparks and deep magenta shadows. The atmosphere is tense and mysterious, featuring high-quality anime production values with lens flare effects and detailed mechanical designs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBui5FZcfKrsJesU4H6WM78dnuatsZY-NVPDNwxFiGj1iJVmB9rvEVmjpCejAmK5zAGkiOZBggtLm4s9gcMPJGGqNIK4barNJ_DwtVvR60dSRO2kr6Zi1uWc6OjrksZnChM5WDaBNXdSmA6k5Qt0AnG9KjRNIXClUSJSRpjH7FfRplr4ROoULVXtX0DhuIQoyC7tMaw9OUByWk85aZSkcSj_UeQ2H-C27qbNOJj0AiG31OPRwUUBI0v3s4HbpRlxs9IszG09e4I0s1e"/>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+</div>
+<span class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-label-sm font-label-sm">24:00</span>
+</div>
+<div class="p-4 space-y-2">
+<p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Episode 1</p>
+<h4 class="font-headline-md text-body-lg group-hover:text-primary transition-colors">The First Awakening</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2">Rei uncovers a forgotten relic in the ruins of District 7, triggering a sequence of events that will change everything.</p>
+</div>
+</div>
+<!-- Episode Card 2 -->
+<div class="group relative bg-surface-container/40 rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 border border-white/5 cursor-pointer">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Episode 2 Thumbnail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A dramatic anime scene of two characters facing off in a rain-slicked neon street at night. Reflections of pink and blue signs ripple in puddles on the ground. The lighting is cinematic and moody, with heavy rain falling through the frame, creating a sense of isolation and high-stakes conflict." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn0e9ervzc_PrNWvNm-MIg8wRq8ONb_SNFgqDxEQlcd-1fPUdgcmjr-nlpgK16Xw3ZR0UhMcNjHf4Shr4cjMvgm2Y6hLfn-oh9_WkutL5wT8-tVFsbP8OIgXJT9bipLdqYiv3WBoR9NhFcem5xgZI6538AfIJI06mk5Yrb15qQDUXQvUG5pIz1xpmRVoPSqA3-NabF_kiyF5-TuSMhciDkBCNIsNDm2lkKv4FeOY05ZJNEiY8gQKAL-M-tr51GO95l1ydBETaeVldC"/>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+</div>
+<span class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-label-sm font-label-sm">23:45</span>
+</div>
+<div class="p-4 space-y-2">
+<p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Episode 2</p>
+<h4 class="font-headline-md text-body-lg group-hover:text-primary transition-colors">Echoes of the Void</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2">The pursuit begins as mysterious entities emerge from the shadows, tracking the power of the core.</p>
+</div>
+</div>
+<!-- Episode Card 3 -->
+<div class="group relative bg-surface-container/40 rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 border border-white/5 cursor-pointer">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Episode 3 Thumbnail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A wide cinematic anime shot of a colossal crystalline entity floating above a ruined city landscape. The light is ethereal, casting a soft green and teal glow across the shattered skyscrapers. The scale is immense, creating a feeling of awe and cosmic horror in a beautifully rendered dark fantasy setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPcKdyBuQ3pUsZDk-R-yM8Iv5EL280vreKk6e-DWiAU57p4pakWxgCwd-HJ7CD0-ANDrIzilmz81yKGnoPTOa9GzE743bif5WX21UQACfI0xmEPXUfujeptotkUZMBu1rN8OftRYH1n5dYoudcpYkriJTFYRQ1jJBgL1NeGEujFDhiisHlG-P9VLuBcGY7RBmdZDSDioT_mqH8TyihA6s9fXl4kmZy__87pv26SSTSP_AgH9RSkDsdDUQio0t0WicenvXXQ9_4VegS"/>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+</div>
+<span class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-label-sm font-label-sm">24:12</span>
+</div>
+<div class="p-4 space-y-2">
+<p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Episode 3</p>
+<h4 class="font-headline-md text-body-lg group-hover:text-primary transition-colors">Shattered Skies</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2">The fleet engages with the titan, but conventional weapons prove useless against its energy field.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Other Panels (Hidden by default) -->
+<div class="hidden grid grid-cols-2 md:grid-cols-4 gap-6" id="panel-related">
+<!-- Placeholder for related items -->
+<div class="space-y-3">
+<div class="aspect-[2/3] rounded-lg bg-surface-container-high border border-white/5 overflow-hidden">
+<img alt="Related Anime 1" class="w-full h-full object-cover" data-alt="Official poster art for a sci-fi anime featuring a female pilot in a sleek white flight suit, standing before a massive red mech. High-contrast lighting with primary red and white colors, cinematic framing, and professional character design in a premium digital painting style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACk-vqQuTBjJjcRILh2j7ZFBQ31xVP5G68scXMJgykEbNftfFjhnWfpuHWWqrQUbcHvBJz67uvoTcoBLh3REEqreLN7xBEooM59YL95E7ojifNW2pSQC09a-13gd-unuEmjkqlXWhHtEZWcSh-5mJ1_BTE6vATOMfZC2bm2O04MVESWPfqEdtd52jbcVR8OQEcNYd0aGv2xTcTYaEBiTIhPXVoWwfwvlvAKGeEULkvzS-j7aZLhqxL8cs5F-O_7bbbdG7gqSWfNFot"/>
+</div>
+<h5 class="font-medium">Red Horizon</h5>
+</div>
+</div>
+</div>
+<!-- Sidebar Information -->
+<aside class="w-full lg:w-80 space-y-10">
+<div class="glass-card p-6 rounded-2xl space-y-6">
+<h3 class="font-headline-md text-body-lg text-primary uppercase tracking-widest">About Series</h3>
+<div class="space-y-4">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Studio</p>
+<p class="text-on-surface font-semibold">Vertex Animation</p>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Release Date</p>
+<p class="text-on-surface font-semibold">Oct 12, 2024</p>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Status</p>
+<p class="text-secondary font-semibold">Ongoing</p>
+</div>
+</div>
+<div class="pt-4 border-t border-white/10 space-y-3">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Tags</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container-highest rounded text-label-sm hover:bg-primary/20 transition-colors cursor-pointer">Mecha</span>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-label-sm hover:bg-primary/20 transition-colors cursor-pointer">Dystopian</span>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-label-sm hover:bg-primary/20 transition-colors cursor-pointer">Psychological</span>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-label-sm hover:bg-primary/20 transition-colors cursor-pointer">Seinen</span>
+</div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl space-y-4">
+<h3 class="font-headline-md text-body-lg text-secondary uppercase tracking-widest">Streaming Now</h3>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-tertiary-container/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<p class="font-bold">4K Ultra HD</p>
+<p class="text-label-sm text-on-surface-variant">Dolby Atmos Audio</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-gutter flex flex-col items-center gap-6 bg-surface-container-lowest border-t border-outline-variant">
+<span class="font-display-lg text-headline-md text-primary">ANI-STREAM</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Contact Us</a>
+</div>
+<p class="text-on-surface-variant text-body-md text-center">© 2024 ANI-STREAM. High-Octane Streaming Experience.</p>
+</footer>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 md:hidden bg-surface-container/80 backdrop-blur-2xl border-t border-white/5 shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">bookmarks</span>
+<span class="font-label-sm text-label-sm">Watchlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        function switchTab(tabName) {
+            const panels = ['episodes', 'related', 'comments'];
+            panels.forEach(p => {
+                document.getElementById('panel-' + p).classList.add('hidden');
+                const tab = document.getElementById('tab-' + p);
+                tab.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+                tab.classList.add('text-on-surface-variant', 'font-medium');
+            });
+
+            document.getElementById('panel-' + tabName).classList.remove('hidden');
+            const activeTab = document.getElementById('tab-' + tabName);
+            activeTab.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+            activeTab.classList.remove('text-on-surface-variant', 'font-medium');
+        }
+
+        // Simple parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('.hero-gradient').previousElementSibling;
+            heroImg.style.transform = `translateY(${scrolled * 0.4}px)`;
+        });
+    </script>
+</body></html>

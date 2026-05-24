@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniControl - Library Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0F0F0F;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#b9f1ff",
+                      "on-tertiary-fixed-variant": "#005304",
+                      "surface": "#131313",
+                      "surface-variant": "#353534",
+                      "tertiary-container": "#16a81b",
+                      "surface-container-low": "#1c1b1b",
+                      "secondary-fixed": "#a5eeff",
+                      "on-background": "#e5e2e1",
+                      "background": "#131313",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-bright": "#3a3939",
+                      "outline-variant": "#5a3f47",
+                      "secondary-fixed-dim": "#00daf8",
+                      "on-primary": "#650032",
+                      "primary-fixed": "#ffd9e2",
+                      "primary-container": "#ff4993",
+                      "on-primary-container": "#59002b",
+                      "tertiary-fixed-dim": "#5de151",
+                      "on-tertiary-fixed": "#002201",
+                      "on-secondary-container": "#005f6d",
+                      "inverse-primary": "#ba0060",
+                      "on-error": "#690005",
+                      "tertiary": "#5de151",
+                      "primary-fixed-dim": "#ffb1c7",
+                      "surface-dim": "#131313",
+                      "inverse-on-surface": "#313030",
+                      "error-container": "#93000a",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e5e2e1",
+                      "on-secondary-fixed-variant": "#004e5a",
+                      "outline": "#aa8890",
+                      "on-tertiary-container": "#003202",
+                      "inverse-surface": "#e5e2e1",
+                      "on-tertiary": "#003a02",
+                      "on-surface-variant": "#e2bdc6",
+                      "tertiary-fixed": "#7afe6a",
+                      "surface-container": "#201f1f",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#ffb1c7",
+                      "on-primary-fixed-variant": "#8e0048",
+                      "surface-container-highest": "#353534",
+                      "on-secondary-fixed": "#001f25",
+                      "primary": "#ffb1c7",
+                      "on-primary-fixed": "#3f001c",
+                      "secondary-container": "#00e0ff",
+                      "on-secondary": "#00363f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "container-max": "1440px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Sora"],
+                      "display-lg-mobile": ["Sora"],
+                      "display-lg": ["Sora"],
+                      "label-sm": ["JetBrains Mono"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="font-body-md text-body-md bg-background text-on-surface custom-scrollbar">
+<!-- SideNavBar -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container dark:bg-surface-container-high backdrop-blur-xl bg-surface-container/60 border-r border-white/10 shadow-2xl z-50 flex flex-col h-full py-8 gap-unit">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tighter">AniControl</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest mt-1 opacity-70">Global Admin</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-primary/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">subscriptions</span>
+<span>Library Management</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>User Analytics</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span>Content Moderation</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary-container font-bold rounded-lg hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary-container/20">
+                Broadcast Alert
+            </button>
+<div class="mt-8 flex items-center gap-3 p-3 rounded-xl bg-surface-container-highest/50">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover border border-primary/20" data-alt="A professional headshot of a modern digital administrator in a high-tech studio environment. The lighting is dramatic and cinematic with soft pink and blue neon rim lights highlighting their silhouette. They wear a minimalist black tech-wear jacket against a blurred background of glowing server racks and holographic interfaces. The aesthetic is clean, premium, and futuristic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKIudqJpaR3SwHKnjrrq-B7Xdke1XlC81YmOnDiB05on3iL4gIZKHti0v-GycExvoUzIoxY_XVJKpHAMTN1n6KCfqFA1iwT32VLu_xQEEApS8m3tI6btaweQ8i19fpqcDXkSzzKBg0UhqW5vDFJyj-ua5lEKVgXjwoB9W10laeGg5LCBvsw6Z2kuPCUwp9teCdJM3WQymhCLPaO_NU2n3-HH5sj4_YrHN0W6oVgZ9ZideVSGuF08494rCloG1QM0VJy8wII6nkPul9"/>
+<div>
+<p class="text-sm font-bold">Admin Alex</p>
+<p class="text-xs text-on-surface-variant">System Root</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="h-20 w-full fixed top-0 z-40 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border-b border-white/5 flex justify-between items-center pl-72 pr-margin-desktop w-full">
+<div class="flex items-center gap-8">
+<h2 class="font-headline-md text-headline-md text-primary font-extrabold tracking-tight">Admin Control Center</h2>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-medium" href="#">Direct Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-medium" href="#">Audit Logs</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-highest border-none rounded-full pl-10 pr-4 py-2 w-64 focus:ring-2 focus:ring-primary-container text-sm transition-all" placeholder="Quick find series..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-6 w-[1px] bg-white/10 mx-2"></div>
+<button class="px-5 py-2 bg-secondary-container text-on-secondary font-bold rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-secondary-container/20">
+                    Deploy Update
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pl-64 pt-20 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-margin-desktop">
+<!-- Bento Dashboard Header -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-gutter">
+<!-- Storage Stats Card -->
+<div class="md:col-span-2 glass-panel rounded-xl p-6 flex items-center justify-between relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-2">Storage Usage</h3>
+<p class="text-on-surface-variant mb-6">Media Servers Status: <span class="text-tertiary">Optimal</span></p>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-4xl font-extrabold text-primary">8.4</span>
+<span class="text-on-surface-variant text-xl mb-1">/ 12 TB</span>
+</div>
+<div class="w-full max-w-md h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-[70%] relative">
+<div class="absolute inset-0 shimmer opacity-50"></div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant mt-3 font-label-sm">NEXT CLEANUP SCHEDULED: OCT 24, 04:00 AM</p>
+</div>
+<div class="absolute right-0 top-0 h-full w-1/3 opacity-10 pointer-events-none transform translate-x-10 group-hover:translate-x-0 transition-transform duration-700">
+<span class="material-symbols-outlined text-[180px] text-primary" style="font-variation-settings: 'FILL' 1;">storage</span>
+</div>
+</div>
+<!-- Quick Actions Card -->
+<div class="bg-primary text-on-primary rounded-xl p-6 flex flex-col justify-between hover:shadow-2xl hover:shadow-primary/20 transition-all cursor-pointer">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4">add_circle</span>
+<h3 class="font-headline-md text-headline-md leading-tight">Add New Series</h3>
+<p class="opacity-80 mt-2">Expand the multiverse. Upload metadata and source files.</p>
+</div>
+<div class="flex justify-end">
+<span class="material-symbols-outlined text-3xl">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Library Table Section -->
+<div class="glass-panel rounded-xl overflow-hidden">
+<div class="p-6 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-md text-headline-md">Anime Catalog</h3>
+<p class="text-on-surface-variant">Showing 124 active series across all servers</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">filter_list</span>
+<select class="bg-surface-container-highest border-none rounded-lg pl-10 pr-10 py-2 text-sm focus:ring-primary appearance-none cursor-pointer">
+<option>All Status</option>
+<option>Published</option>
+<option>Draft</option>
+</select>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-lg hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">download</span>
+<span class="font-bold text-sm">Export CSV</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-on-surface-variant font-label-sm text-label-sm border-b border-white/5">
+<th class="px-6 py-4 uppercase tracking-wider">Series Title</th>
+<th class="px-6 py-4 uppercase tracking-wider text-center">Episodes</th>
+<th class="px-6 py-4 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 uppercase tracking-wider">Last Updated</th>
+<th class="px-6 py-4 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white/[0.03] transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 rounded overflow-hidden flex-shrink-0 bg-surface-container-highest relative">
+<img alt="Cyber Horizon Poster" class="w-full h-full object-cover" data-alt="A cinematic vertical anime poster for a cyberpunk series titled Cyber Horizon. The scene features a futuristic Tokyo-inspired city at night with pouring rain and neon magenta reflections on wet asphalt. A lone character stands under a transparent umbrella, silhouetted against a massive glowing hologram of a digital dragon. The art style is sharp, high-contrast, and premium, echoing a dark cinematic theater aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANgGEwQ6bP7Sod42uu0D1f1JLmMzuBwQXFAY_HAMTdSnrmKKcWgWdUdYluO50XYIecdZPME7PUt5O5SD7hyor09mFnqPIIvF7UAaFfy0r1zLKj2VyzGDvWXyrslUzkeSBEryxgrq5l0EYG-mGA03iNqV4oQhDzXpGOF7ulAzTboNW10IdT51soj_LMRtwft2SII0CWDk8izQenjgsunN4wLqt4TxQI-ZWdU-gwFC_VM8USk3fwTBq4lYY6IPMRV-9Q-J-zJ-7Y_7Ny"/>
+</div>
+<div>
+<div class="font-bold text-on-surface">Cyber Horizon: Zero</div>
+<div class="text-xs text-on-surface-variant">Sci-Fi • Cyberpunk • Seinen</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="font-label-sm bg-surface-container-highest px-3 py-1 rounded-full text-secondary">24 / 24</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                                        Published
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">
+                                    Oct 12, 2023
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-primary transition-colors" title="Edit Series">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-secondary transition-colors" title="Manage Episodes">
+<span class="material-symbols-outlined">video_library</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant" title="More Options">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/[0.03] transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 rounded overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img alt="Sakura Whispers Poster" class="w-full h-full object-cover" data-alt="A beautiful and serene anime poster for a slice-of-life series named Sakura Whispers. The visual captures a traditional Japanese school courtyard during peak cherry blossom season. Pink petals fill the air, caught in a soft breeze. The lighting is golden-hour warm, creating a dreamy, nostalgic atmosphere with vibrant pastel pinks and soft greens. The art style is crisp and high-quality, reminiscent of modern premium anime productions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdPBqc5hYgktHEzfIcaA_nfjmqSgosL-0G81-HI_P0zbqKu9yVW1US5Ae7kvTn09qzc0MT4WZo-fw0ktoy5x70G1uLhGZN8IKY26GfA_rK7uJkDZCTzxkub7x5yLTX_-LsnKfoCk4HeCv-sACviOeK4K7x_ZSRoJ7SRZVaHa1YjNVkrKYA_tRIyCWwzFp_kyq2U0A_JJCRjDT2OWhBn1eqDnQisVGlvCsC_JVmk4SVQWmWT0E8xirwkC8lZCMdTRgTg00jnE2mASHu"/>
+</div>
+<div>
+<div class="font-bold text-on-surface">Sakura Whispers</div>
+<div class="text-xs text-on-surface-variant">Romance • School • Drama</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="font-label-sm bg-surface-container-highest px-3 py-1 rounded-full text-secondary">08 / 12</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2 text-on-surface-variant/50">
+<span class="w-2 h-2 rounded-full bg-on-surface-variant/50"></span>
+                                        Draft
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">
+                                    Oct 18, 2023
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-primary transition-colors" title="Edit Series">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-secondary transition-colors" title="Manage Episodes">
+<span class="material-symbols-outlined">video_library</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant" title="More Options">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/[0.03] transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 rounded overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img alt="Void Walker Poster" class="w-full h-full object-cover" data-alt="A dark, epic anime poster for a fantasy action series called Void Walker. It depicts a vast cosmic void where a warrior clad in glowing blue ethereal armor stands on a floating fragment of a ruined temple. Swirling nebulas of deep indigo and electric blue fill the background, with distant stars twinkling like diamonds. The mood is intense and mysterious, with sharp, high-definition digital painting style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7pJoN91R_w1Gy2ZctSw8NJUzgrk3yqKlaJ1sJyOk4odO6wrqlEyNhx8sIDx1zwAqT-6-F4skjVqTFeZUAnNzYsp-bcamuxBIlKYxevTCzhGmDeoLCXPV_4WbgNDnAQhaYcTHivnl6AM1Q79MqeJIAlr0ofJMYKABCpPcWhGefy9KmM6S41109OdtP1c2NRHH9zG3QkZtDJ_CkI3oo3VURfQxRzMJY6saObV0720Ma-0PT3TRNHKNH6DbQ7jz8IztDE7OWot3xcmPk"/>
+</div>
+<div>
+<div class="font-bold text-on-surface">Void Walker</div>
+<div class="text-xs text-on-surface-variant">Action • Fantasy • Shonen</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="font-label-sm bg-surface-container-highest px-3 py-1 rounded-full text-secondary">48 / 48</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                                        Published
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">
+                                    Sept 29, 2023
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-primary transition-colors" title="Edit Series">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-secondary transition-colors" title="Manage Episodes">
+<span class="material-symbols-outlined">video_library</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant" title="More Options">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-white/[0.03] transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 rounded overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img alt="Iron Heart Poster" class="w-full h-full object-cover" data-alt="A gritty mecha anime poster titled Iron Heart. A massive, battle-scarred robot kneels in a desolate industrial wasteland under a blood-red sunset. Sparks fly from its exposed circuitry. The atmosphere is heavy and epic, utilizing deep shadows and vibrant firelight. The visual style is highly detailed with a focus on mechanical intricacy and cinematic scale. Dominant colors are charcoal, rust-orange, and deep black." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvCyqRVTbAx_xJ6RUF_76jBeLblnQstlGQYeQGIeX0tzIbz52M2vigZsJiqhrTza9rCC9cqkSOHL1wmLN-qqsBL_8p5vrqoEUKVwvhDfPKlo-xzgi5Eva9Li8CTARBFMXuqywoE-FROoFC4tdhpPJ9svf-Yuoi3x17GbT6kKtUJmSzGWD1U4W8IdsAU0L3KvIUO3OPrWQq8cws1BXjdPF0lrSuzYVGogeBSUkELSSJvCiEhIQSgSWCb4tMwoXtxsy-7IO6IJ0ZhPbx"/>
+</div>
+<div>
+<div class="font-bold text-on-surface">Iron Heart</div>
+<div class="text-xs text-on-surface-variant">Mecha • War • Military</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="font-label-sm bg-surface-container-highest px-3 py-1 rounded-full text-secondary">12 / 12</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                                        Published
+                                    </span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">
+                                    Aug 15, 2023
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-primary transition-colors" title="Edit Series">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-secondary transition-colors" title="Manage Episodes">
+<span class="material-symbols-outlined">video_library</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant" title="More Options">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-white/5 flex items-center justify-between">
+<p class="text-sm text-on-surface-variant">Showing 4 of 124 results</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 hover:bg-white/5 disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 hover:bg-white/5">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 hover:bg-white/5">3</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 hover:bg-white/5">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interaction: Table row hover glow effect
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.boxShadow = 'inset 0 0 20px rgba(255, 177, 199, 0.05)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.boxShadow = 'none';
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-105');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-105');
+        });
+    </script>
+</body></html>

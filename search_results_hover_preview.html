@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANI-STREAM | Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#313030",
+                    "surface-variant": "#353534",
+                    "surface-dim": "#131313",
+                    "on-tertiary-fixed": "#002201",
+                    "secondary-fixed": "#a5eeff",
+                    "on-tertiary-fixed-variant": "#005304",
+                    "error-container": "#93000a",
+                    "on-primary-fixed": "#3f001c",
+                    "outline": "#aa8890",
+                    "inverse-primary": "#ba0060",
+                    "secondary": "#b9f1ff",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "on-error": "#690005",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "secondary-fixed-dim": "#00daf8",
+                    "on-tertiary": "#003a02",
+                    "primary-fixed": "#ffd9e2",
+                    "on-primary": "#650032",
+                    "tertiary": "#5de151",
+                    "surface-bright": "#3a3939",
+                    "on-background": "#e5e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-container": "#16a81b",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-primary-fixed-variant": "#8e0048",
+                    "tertiary-fixed": "#7afe6a",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#00363f",
+                    "surface-container-high": "#2a2a2a",
+                    "primary": "#ffb1c7",
+                    "on-tertiary-container": "#003202",
+                    "surface-tint": "#ffb1c7",
+                    "surface-container-highest": "#353534",
+                    "on-secondary-container": "#005f6d",
+                    "background": "#131313",
+                    "tertiary-fixed-dim": "#5de151",
+                    "on-surface-variant": "#e2bdc6",
+                    "on-primary-container": "#59002b",
+                    "on-surface": "#e5e2e1",
+                    "surface": "#131313",
+                    "primary-fixed-dim": "#ffb1c7",
+                    "primary-container": "#ff4993",
+                    "secondary-container": "#00e0ff",
+                    "outline-variant": "#5a3f47",
+                    "on-secondary-fixed": "#001f25",
+                    "error": "#ffb4ab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "display-lg-mobile": ["Sora"],
+                    "display-lg": ["Sora"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Sora"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 177, 199, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353534; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffb1c7; }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface/60 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center gap-8">
+<span class="font-display-lg text-headline-md font-extrabold text-primary tracking-tighter">ANI-STREAM</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Browse</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Seasonal</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Movies</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">My List</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 flex-1 justify-end max-w-2xl ml-8">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
+<input class="w-full bg-surface-container-high border border-primary/30 rounded-full py-2 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary transition-all font-body-md" placeholder="Search anime, movies..." type="text" value="Cyberpunk"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User profile avatar" data-alt="A stylized digital avatar of a young man with cool urban fashion, set against a vibrant neon background with glitch art aesthetics. The lighting is dramatic and colorful, reflecting the high-octane streaming brand identity with neon pink and electric blue highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_O68OWfcznIyD6xlZPS6UH3cv-rwOuSfXf1pwHOGG1jHCvQn8CgLE612yyXy5ZMqcHvIK6CQmnYiNoAhtH8fRqNJU1hwk7xMMiomCcMwnYT3aima944OXpn8VfiXv4gFPJTUbylUMmCmy7MKJYoM76mrdMeMMi1MWJNxdqsHWnSV56A2JXD00GlyFoe6G7-AsEn_7xx2GG45qSWuXCaR6vZ36pKc1K9AvG3Tupe2mjjPnVB2GqiUd15PeNYSwpsRrBSa4on58NvAA"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20 px-4 md:px-margin-desktop min-h-screen">
+<div class="flex flex-col lg:flex-row gap-10">
+<!-- Filters Sidebar -->
+<aside class="w-full lg:w-72 space-y-8">
+<div>
+<h1 class="font-display-lg text-headline-md text-on-surface mb-2">Search Results</h1>
+<p class="text-on-surface-variant font-body-md">24 titles found for <span class="text-primary font-bold">"Cyberpunk"</span></p>
+</div>
+<!-- Genre Filters -->
+<section>
+<h3 class="text-label-sm font-label-sm text-primary-fixed-dim uppercase tracking-widest mb-4">Genre</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary-container border border-primary/20">Sci-Fi</button>
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant hover:border-primary/50 border border-transparent transition-all">Action</button>
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary-container border border-primary/20">Cyberpunk</button>
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant hover:border-primary/50 border border-transparent transition-all">Drama</button>
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant hover:border-primary/50 border border-transparent transition-all">Psychological</button>
+</div>
+</section>
+<!-- Format -->
+<section>
+<h3 class="text-label-sm font-label-sm text-primary-fixed-dim uppercase tracking-widest mb-4">Format</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-md text-on-surface group-hover:text-primary transition-colors">TV Series</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-md text-on-surface group-hover:text-primary transition-colors">Movies</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-md text-on-surface group-hover:text-primary transition-colors">OVA / ONA</span>
+</label>
+</div>
+</section>
+<!-- Status -->
+<section>
+<h3 class="text-label-sm font-label-sm text-primary-fixed-dim uppercase tracking-widest mb-4">Status</h3>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high border border-outline-variant text-label-sm font-label-sm hover:border-primary transition-all">Ongoing</button>
+<button class="flex-1 py-2 rounded-lg bg-primary-container border border-primary text-on-primary-container text-label-sm font-label-sm">Finished</button>
+</div>
+</section>
+<button class="w-full py-3 bg-primary text-on-primary font-bold rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-primary/10">
+                    Apply Filters
+                </button>
+</aside>
+<!-- Main Content Grid -->
+<div class="flex-1">
+<!-- Sorting & View Controls -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+<div class="flex items-center gap-4 overflow-x-auto pb-2 sm:pb-0">
+<span class="text-on-surface-variant text-label-sm whitespace-nowrap">Sort by:</span>
+<div class="flex bg-surface-container rounded-full p-1 border border-white/5">
+<button class="px-4 py-1 rounded-full bg-primary-container text-on-primary-container text-label-sm">Relevancy</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant text-label-sm hover:text-on-surface">Latest</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant text-label-sm hover:text-on-surface">Popularity</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant text-label-sm hover:text-on-surface">Rating</button>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded bg-surface-container text-primary">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-2 rounded bg-transparent text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+</div>
+</div>
+<!-- Anime Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Result Card 1 -->
+<div class="glass-card group relative rounded-xl overflow-hidden cursor-pointer">
+<div class="aspect-[16/9] w-full relative overflow-hidden"><img alt="Cyber City" class="w-full h-full object-cover group-hover:scale-105 group-hover:blur-sm group-hover:brightness-50 transition-all duration-500" data-alt="A cinematic 16:9 illustration of a futuristic neon city at night in an anime style. Vibrant pink and electric blue neon signs illuminate rain-slicked streets where a lone figure stands beneath a digital holographic billboard. The atmosphere is immersive and high-octane, featuring deep basics and glowing accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbUCFLBrEuhSrMtTWAwkFD16scmiWE82zesdxxONQ4srMXBP16lLZ7UXR_XA8PsyUKADMsGuC3h0M1Rlw0pcJDB3V5fCG9GoyIOSe9Y6fqxcCTfViVs2WmWb6NCh4ucugM8a6OUt_guKVUoRuhxJF_imneCVNAcaL4MKZ_7YJ7xzC4HlTlLRx_EZK2VAzKwo10TLy9FhwEwPwGrD-nzTvL80IQHTGrkw7F0IeFzoCdo72pqevlucZbcVq1lZK_U4gXMA9XhvJZgoSG"/>
+<div class="absolute inset-0 bg-surface/40 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-100 scale-95">
+<p class="text-body-md text-on-surface text-center line-clamp-4 font-medium drop-shadow-lg">
+        In a rain-drenched future, a lone hacker uncovers a conspiracy that threatens the very fabric of the digital consciousness. A journey of high-octane action and neon rebellion.
+    </p>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface/80 backdrop-blur-md rounded border border-white/10 flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-on-surface font-label-sm">9.2</span>
+</div>
+<div class="absolute bottom-2 left-2 flex gap-2 z-10">
+<span class="px-2 py-0.5 bg-tertiary-container/90 backdrop-blur text-on-tertiary-container text-[10px] font-bold rounded uppercase">Trending</span>
+</div></div>
+<div class="p-4">
+<h3 class="font-headline-md text-on-surface mb-1 line-clamp-1">Neon Genesis: Overdrive</h3>
+<div class="flex gap-2 mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant">TV Series</span>
+<span class="text-label-sm font-label-sm text-outline-variant">•</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">24 Episodes</span>
+</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Sci-Fi</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Action</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Thriller</span>
+</div>
+</div>
+</div>
+<!-- Result Card 2 -->
+<div class="glass-card group relative rounded-xl overflow-hidden cursor-pointer">
+<div class="aspect-[16/9] w-full relative overflow-hidden"><img alt="Hacker Terminal" class="w-full h-full object-cover group-hover:scale-105 group-hover:blur-sm group-hover:brightness-50 transition-all duration-500" data-alt="A high-tech anime visual of a hacker's workspace in a dark urban apartment. Glowing matrix code scrolls across multiple monitors, casting a bright green and pink light onto the surrounding dark environment. The scene is cinematic and premium, with detailed textures and immersive atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIjkw9ICVTBCHZTJ4LFSt9qKmoG2lMDDaEBvBnW0qjvyV-5kKSC5wchonbu6MqUcF19IAkBva79_TvXK0SntEwJVdAM5tgL0TkirN9Nd6IcVVG9xpHchfPjqFlMwmBYlVMJwuhNZUv9w8KL6dR1bIRnkSjna8V_djhNAPbl_kVI7y41G0LrUHLgLNARDYzWTcNlEslnPeifWdFXSmODEMH8whmUU5U9WF8QAX7jW2VjAmMeuNi3L3rusX8jLChh2VDE0cRV0xEvlVA"/>
+<div class="absolute inset-0 bg-surface/40 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-100 scale-95">
+<p class="text-body-md text-on-surface text-center line-clamp-4 font-medium drop-shadow-lg">
+        When a legendary network specialist is framed for a global outage, they must dive into the deepest layers of the Net to clear their name and find the real ghost in the machine.
+    </p>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface/80 backdrop-blur-md rounded border border-white/10 flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-on-surface font-label-sm">8.7</span>
+</div></div>
+<div class="p-4">
+<h3 class="font-headline-md text-on-surface mb-1 line-clamp-1">Protocol Zero</h3>
+<div class="flex gap-2 mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Movie</span>
+<span class="text-label-sm font-label-sm text-outline-variant">•</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">118 min</span>
+</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Cyberpunk</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Mystery</span>
+</div>
+</div>
+</div>
+<!-- Result Card 3 -->
+<div class="glass-card group relative rounded-xl overflow-hidden cursor-pointer">
+<div class="aspect-[16/9] w-full relative overflow-hidden"><img alt="Cyborg Girl" class="w-full h-full object-cover group-hover:scale-105 group-hover:blur-sm group-hover:brightness-50 transition-all duration-500" data-alt="A striking anime portrait of a female cyborg with glowing pink prosthetic eyes and intricate mechanical details on her face. She is standing against a backdrop of a blurred, rainy cityscape at twilight. The lighting is low-key with sharp, vibrant pink highlights, creating a premium and intense emotional tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHxGRoc-5ISM8Scmaq7HtE14BJEyJYkWaJg6So3A69wrAgPnHMRA55DWCq-X2Jnqk4i-bO6o6jUWz9NE4AxDFseA9BUH0zteGkdmUSM8iYOg33h01K8pDTmYDFO-Q_lXMPrEIz2OiWKKjmV-8wuscatFHIOicTlB9K6upzApNR1ATxj-2kGrzFakmkQifzKaHhrz7L6HFyCibox0aSXDShEnsDeHWA5DQa5RxB6-mZxa2Fn57v7qAcq4yUsEdrIW0YSKNpjWPJGMGT"/>
+<div class="absolute inset-0 bg-surface/40 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-100 scale-95">
+<p class="text-body-md text-on-surface text-center line-clamp-4 font-medium drop-shadow-lg">
+        What does it mean to be human in an age of artificial augmentation? A young cyborg searches for her lost memories while evading the shadow organization that created her.
+    </p>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface/80 backdrop-blur-md rounded border border-white/10 flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-on-surface font-label-sm">9.5</span>
+</div>
+<div class="absolute bottom-2 left-2 flex gap-2 z-10">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded uppercase">HD</span>
+</div></div>
+<div class="p-4">
+<h3 class="font-headline-md text-on-surface mb-1 line-clamp-1">Synthetic Souls</h3>
+<div class="flex gap-2 mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant">TV Series</span>
+<span class="text-label-sm font-label-sm text-outline-variant">•</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Ongoing</span>
+</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Sci-Fi</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Drama</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Mecha</span>
+</div>
+</div>
+</div>
+<!-- Result Card 4 -->
+<div class="glass-card group relative rounded-xl overflow-hidden cursor-pointer">
+<div class="aspect-[16/9] w-full relative overflow-hidden"><img alt="Tech Cityscape" class="w-full h-full object-cover group-hover:scale-105 group-hover:blur-sm group-hover:brightness-50 transition-all duration-500" data-alt="A breathtaking aerial view of a sprawling anime megacity with massive skyscrapers connected by high-speed transit tubes. The sunset sky is a deep purple and orange, while the city below is starting to glow with millions of white and blue lights. The aesthetic is clean, modern, and epic in scale." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZKYjdFZcdYLu9EGcBhaTYZBQq3pAYhfMrTkWTdbRD5dv4hBK-Th_rbq2Uk2D4re45QVjJKlx1tG6ogUjWfbSCcHIK9VNoTbs6QdQ3dV7yvrVRJ1l_BLIzB3x3NosAMmnQ-hE0uNG2c4lmWq-mhfusq4cxY6MEH4wpDsnNtC77Z_Z0kEDZcVxM9meeywnqigqsu0NIAn3CeSpJnNIqOBTl2ZQkKMna3OOcU_5ej5m-PFVqL5VTtLTDIubuvJ9Lj6Qkngrd6A89mZmF"/>
+<div class="absolute inset-0 bg-surface/40 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-100 scale-95">
+<p class="text-body-md text-on-surface text-center line-clamp-4 font-medium drop-shadow-lg">
+        The year is 2099. The sky is divided between the mega-corporations and the urban underworld. Follow three strangers whose fates collide at the center of the world's largest city.
+    </p>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface/80 backdrop-blur-md rounded border border-white/10 flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-on-surface font-label-sm">8.1</span>
+</div></div>
+<div class="p-4">
+<h3 class="font-headline-md text-on-surface mb-1 line-clamp-1">Skyline 2099</h3>
+<div class="flex gap-2 mb-3">
+<span class="text-label-sm font-label-sm text-on-surface-variant">OVA</span>
+<span class="text-label-sm font-label-sm text-outline-variant">•</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">3 Episodes</span>
+</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Action</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] text-on-surface-variant border border-white/5">Urban</span>
+</div>
+</div>
+</div>
+<!-- Empty State Placeholder (Demonstrating potential) -->
+<div class="glass-card flex flex-col items-center justify-center p-8 text-center rounded-xl border-dashed border-outline-variant opacity-50 h-[320px]">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4">search_off</span>
+<p class="text-on-surface-variant">End of results for "Cyberpunk"</p>
+<button class="mt-4 text-primary font-bold text-label-sm">Clear all filters</button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary transition-all">3</button>
+<span class="text-on-surface-variant px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary transition-all">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface-container/80 backdrop-blur-2xl border-t border-white/5 md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-full px-4 py-1">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">bookmarks</span>
+<span class="font-label-sm text-label-sm">Watchlist</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-12 px-gutter flex flex-col items-center gap-6 bg-surface-container-lowest border-t border-outline-variant mt-12">
+<div class="flex items-center gap-2">
+<span class="font-display-lg text-headline-md text-primary font-extrabold tracking-tighter">ANI-STREAM</span>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-on-surface-variant font-body-md hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-md hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-md hover:text-secondary transition-colors" href="#">Help Center</a>
+<a class="text-on-surface-variant font-body-md hover:text-secondary transition-colors" href="#">Contact Us</a>
+</div>
+<p class="text-on-surface-variant font-body-md text-center">© 2024 ANI-STREAM. High-Octane Streaming Experience.</p>
+<div class="flex gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary/20 transition-all">
+<svg class="w-5 h-5 fill-on-surface-variant" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary/20 transition-all">
+<svg class="w-5 h-5 fill-on-surface-variant" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</button>
+</div>
+</footer>
+<script>
+        // Micro-interaction for filter buttons
+        document.querySelectorAll('aside button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.classList.contains('bg-primary')) {
+                    this.classList.toggle('border-primary');
+                    this.classList.toggle('text-primary');
+                }
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+    </script>
+</body></html>

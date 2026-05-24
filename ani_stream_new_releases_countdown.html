@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANI-STREAM | Enter the Multiverse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ffb4ab",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "on-secondary": "#00363f",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-fixed-dim": "#00daf8",
+                    "tertiary": "#5de151",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "on-error-container": "#ffdad6",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#003202",
+                    "tertiary-container": "#16a81b",
+                    "surface-container-highest": "#353534",
+                    "on-surface": "#e5e2e1",
+                    "surface": "#131313",
+                    "surface-bright": "#3a3939",
+                    "on-primary-container": "#59002b",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-container": "#005f6d",
+                    "inverse-surface": "#e5e2e1",
+                    "on-tertiary": "#003a02",
+                    "outline": "#aa8890",
+                    "outline-variant": "#5a3f47",
+                    "on-primary-fixed": "#3f001c",
+                    "secondary": "#b9f1ff",
+                    "surface-dim": "#131313",
+                    "secondary-container": "#00e0ff",
+                    "primary": "#ffb1c7",
+                    "on-tertiary-fixed": "#002201",
+                    "on-primary-fixed-variant": "#8e0048",
+                    "primary-fixed": "#ffd9e2",
+                    "tertiary-fixed-dim": "#5de151",
+                    "surface-tint": "#ffb1c7",
+                    "surface-container": "#201f1f",
+                    "on-primary": "#650032",
+                    "inverse-primary": "#ba0060",
+                    "surface-container-lowest": "#0e0e0e",
+                    "primary-container": "#ff4993",
+                    "secondary-fixed": "#a5eeff",
+                    "on-surface-variant": "#e2bdc6",
+                    "primary-fixed-dim": "#ffb1c7",
+                    "on-tertiary-fixed-variant": "#005304",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-fixed": "#7afe6a",
+                    "surface-variant": "#353534"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "display-lg": ["Sora"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Sora"],
+                    "display-lg-mobile": ["Sora"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 73, 147, 0.5);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(19, 19, 19, 0) 0%, rgba(19, 19, 19, 1) 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ff4993;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface/60 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center gap-12">
+<span class="font-display-lg text-headline-md font-extrabold text-primary tracking-tighter">ANI-STREAM</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Browse</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Seasonal</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Movies</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">My List</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container px-4 py-2 rounded-full border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant text-body-md" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface text-label-sm w-48" placeholder="Search titles..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/30">
+<img alt="User profile avatar" data-alt="A professional close-up portrait of a stylish young adult with neon pink hair highlights, set against a dark, tech-oriented background with soft bokeh lights. The lighting is dramatic, accentuating sharp features with a subtle magenta glow, matching a premium streaming service aesthetic. The character wears a sleek black collar jacket, embodying a modern anime fan persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9t5DXguAPPQ99JOlm62lTN2C7taIXGYIHcVn0CfsollfmLgzRYGmiz3p8cIGYgTq-b9grxRgTOikCPiXiMYYNb632kIb6EJr1tnU__wydC2G35pF7WRb3N1Im938W6dBQFIjdFxs5hBEjNsMInlGKtNgyk3lpwrcoLfe8tFfWy171MQs6DivN_NSORya3Aal7oJUYKy0vrGXsPuGbQSpgl2H7nMuMCmJKvkWZwUfrCvOa8xmCc-Ks-8Yo3GigS2hfOO-FsRf9y0D9"/>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative w-full h-[921px] flex flex-col justify-end overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Hero Background" class="w-full h-full object-cover scale-110" data-alt="A cinematic, high-octane anime landscape featuring a futuristic sprawling cyberpunk metropolis under a multi-colored nebulous sky. Two powerful warriors are silhouetted against a massive, glowing moon that dominates the horizon. The atmosphere is charged with energy, utilizing deep charcoal shadows and intense neon pink and electric blue highlights. The scene is rendered with ultra-high fidelity, resembling a big-budget animated feature film opening." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIuL9B90krz1Qw9d1i28b3KfL8xymRq9kokL0eLQmxBFcp-52VnJtk6iwbDcr-By0lY9MCzATrGUgabPmk7C4YoM4ZsRO20Vy0EmSvW55M3hNPY9st0Z56GHVueUuX29kzV9sEUm0VYlTgZWWx4FB_FHkx5VZjS7gUpLG1gK0YdHJHC1Yeuai1-5i4ex7R7PPR6Y5aqhotB1oAfDmaHt8Oom_vYsCb9s195f5DAtVoZW-w3Yibq_N1O2aHQ3EiMZ1ZPuuJEzfGavgf"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop pb-24 max-w-4xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 mb-6 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary">LIVE WORLD PREMIERE</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4 leading-tight">ENTER THE <span class="text-primary text-glow">MULTIVERSE</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-10">Experience anime like never before. High-octane action, curated seasonal releases, and a premium community experience in stunning Ultra-HD.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary-container text-on-primary px-10 py-4 rounded-lg font-bold text-headline-md hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,73,147,0.4)]">
+                        Start Watching
+                    </button>
+<button class="px-10 py-4 rounded-lg font-bold text-headline-md border-2 border-secondary text-secondary hover:bg-secondary/10 transition-all backdrop-blur-md">
+                        Explore the Library
+                    </button>
+</div>
+</div>
+</section><!-- Countdown Banner -->
+<section class="w-full bg-surface-container-low/80 backdrop-blur-md border-y border-white/5 py-8 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+<div class="space-y-2">
+<div class="flex items-center justify-center md:justify-start gap-3">
+<span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-sm text-[10px] tracking-widest uppercase">New Releases</span>
+<p class="font-headline-md text-on-surface text-lg">Cyber Horizon: Zero - Season Finale premieres in:</p>
+</div>
+</div>
+<div class="flex items-center gap-4 font-display-lg text-2xl md:text-3xl lg:text-4xl text-on-surface">
+<div class="flex flex-col items-center">
+<span class="font-extrabold">02</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-label-sm">Days</span>
+</div>
+<span class="text-primary pb-4">:</span>
+<div class="flex flex-col items-center">
+<span class="font-extrabold">14</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-label-sm">Hours</span>
+</div>
+<span class="text-primary pb-4">:</span>
+<div class="flex flex-col items-center">
+<span class="font-extrabold">45</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-label-sm">Mins</span>
+</div>
+<span class="text-primary pb-4">:</span>
+<div class="flex flex-col items-center">
+<span class="font-extrabold">12</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-label-sm">Secs</span>
+</div>
+</div>
+<button class="px-8 py-3 bg-white/5 border border-white/10 rounded-lg font-bold text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary transition-all duration-300 flex items-center gap-2 group">
+<span class="material-symbols-outlined text-sm group-hover:fill-1" data-icon="notifications_active">notifications_active</span>
+            Set Reminder
+        </button>
+</div>
+</section>
+<!-- Feature Showcase -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-panel p-8 rounded-xl hover:scale-105 transition-transform duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="speed">speed</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Ultra-HD Streaming</h3>
+<p class="text-on-surface-variant">Zero lag, 4K resolution, and high-fidelity audio. Our global servers ensure your stream is faster than a ninja's dash.</p>
+</div>
+<div class="glass-panel p-8 rounded-xl hover:scale-105 transition-transform duration-300">
+<div class="w-12 h-12 rounded-lg bg-secondary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="settings_input_component">settings_input_component</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Total Control</h3>
+<p class="text-on-surface-variant">Advanced management tools for your library. Built-in admin panels allow you to curate your experience precisely.</p>
+</div>
+<div class="glass-panel p-8 rounded-xl hover:scale-105 transition-transform duration-300">
+<div class="w-12 h-12 rounded-lg bg-tertiary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="groups">groups</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Community Driven</h3>
+<p class="text-on-surface-variant">Active moderation and social integration. Connect with fans who share your obsession for the craft.</p>
+</div>
+</div>
+</section>
+<!-- Series Spotlight -->
+<section class="py-24 overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop mb-12 flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-on-surface mb-2">TRENDING NOW</h2>
+<div class="h-1 w-24 bg-primary rounded-full"></div>
+</div>
+<button class="text-primary font-bold hover:underline">View All Seasons</button>
+</div>
+<div class="flex gap-6 overflow-x-auto px-margin-mobile md:px-margin-desktop custom-scrollbar pb-8">
+<!-- Title 1 -->
+<div class="flex-none w-[300px] md:w-[450px] group cursor-pointer relative overflow-hidden rounded-xl aspect-[16/9]">
+<img alt="Cyber Horizon: Zero" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A detailed digital painting of a futuristic anime city at dusk, with towering skyscrapers and massive holographic advertisements. In the foreground, a protagonist with cybernetic implants looks out over the cityscape. The lighting is dominated by deep blues and vibrant neon pinks, creating a cinematic and high-tech atmosphere characteristic of a premium cyberpunk series." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZvtadyLw3f7wicCfBib2oVgCM3mWcoiXXdr4TpFLkCJIWJXxQmZVFYrldseWdWeKPz9SraBHaEO8ePAPjZEqejYLS2JK_NSA-dxb_mxG-FoWFP16xYyPuk8xs_w9RHu3uZMdd591KqjDWLlA4_sNGBNyW3-7XeixoUT0WEm4wim3FIL84rOnLuJcISlkj_MxwzVFhGmRLw78q9V0Y9UpQgY-3h-dEFNp09PGBOPSJPn68OlfMxmBNakZ5VnJ8jWQQUaRc8R9VRhPJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 flex flex-col justify-end p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-primary text-[10px] font-bold text-on-primary">NEW SEASON</span>
+<span class="text-label-sm text-secondary font-label-sm">Sci-Fi • Action</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-white mb-1">Cyber Horizon: Zero</h4>
+<div class="flex items-center gap-4 text-white/60 text-sm overflow-hidden h-0 group-hover:h-6 transition-all duration-300">
+<span>24 Episodes</span>
+<span>9.8 Rating</span>
+</div>
+</div>
+</div>
+<!-- Title 2 -->
+<div class="flex-none w-[300px] md:w-[450px] group cursor-pointer relative overflow-hidden rounded-xl aspect-[16/9]">
+<img alt="Sakura Whispers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A serene and beautiful anime landscape featuring a traditional Japanese shrine surrounded by blooming cherry blossom trees. Soft, golden sunlight filters through the pink petals falling through the air. The style is soft-shaded and highly detailed, conveying a tranquil and emotional atmosphere with a color palette of soft pinks, warm golds, and deep greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3AlhmXutN6E2o-m8P24nGzbep--GmA2CEU_GxX0G4NNfZR7Nq5_O9oZyLaKMWpbesf-kvqDCE_EekpxVWBRSttZqx_IVkFxEiTgChYrSKRMiRqYufzCJBmO8mPMRCe-Q3cEaay9SXbhGeE6PCyN9ZezjDcTKt2xZDv6UfCsaXdS6OspttqNDn_hYLzOxCyEsT43oE2W3XyssupMvuT2uUU7uO6BGrAn0zIM14JjNtOA_Pa8nB9edbrkzVJ_dWpi2Bsc-9b_JE_rx4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 flex flex-col justify-end p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-secondary/80 text-[10px] font-bold text-on-secondary">MUST WATCH</span>
+<span class="text-label-sm text-secondary font-label-sm">Drama • Romance</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-white mb-1">Sakura Whispers</h4>
+<div class="flex items-center gap-4 text-white/60 text-sm overflow-hidden h-0 group-hover:h-6 transition-all duration-300">
+<span>12 Episodes</span>
+<span>9.5 Rating</span>
+</div>
+</div>
+</div>
+<!-- Title 3 -->
+<div class="flex-none w-[300px] md:w-[450px] group cursor-pointer relative overflow-hidden rounded-xl aspect-[16/9]">
+<img alt="Neo-Tokyo Drifters" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Dynamic action shot of futuristic vehicles racing through a rain-slicked highway in a dark neon-lit city. Streaks of light follow the cars, and the rain droplets are illuminated by vibrant pink and cyan streetlights. The visual style is high-energy, with motion blur and sharp focus on the leading vehicle, capturing a high-octane racing anime aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxE130j8B4GlTL2sz1Wxx5Ln9bKaCXbmHe-zch7Jztbvs4bYAlWY--qb8PFcvnuqOYpPWLebmbqo1G5LT_KHOOIpTqpdg0xoQxz-DA4Zu_qP2xtY6Dvjfv6dboYBXSSWmBW9USo7pI40XdBinNxNTcUVx5RfwtW9ic2ga5Hr4AkYZFrAPyeu5m0spzffoX3EQFhh0PxpFk908cOLt_ji0zKQITZP_9HvRnNnl7YGfcIIaqSCfmALN2zrfEtF5HV3majhivROq3hOk8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 flex flex-col justify-end p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-tertiary/80 text-[10px] font-bold text-on-tertiary">TRENDING</span>
+<span class="text-label-sm text-secondary font-label-sm">Racing • Seinen</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-white mb-1">Neo-Tokyo Drifters</h4>
+<div class="flex items-center gap-4 text-white/60 text-sm overflow-hidden h-0 group-hover:h-6 transition-all duration-300">
+<span>Movie</span>
+<span>9.2 Rating</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Admin Sneak Peek -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low overflow-hidden">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="text-primary font-label-sm text-label-sm tracking-[0.2em] mb-4 block">PROFESSIONAL GRADE TOOLS</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md lg:text-display-lg text-on-surface mb-6">UNRIVALED CONTROL</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                        Our integrated Admin Dashboard provides the heavy-duty tools you need to manage your streaming empire. From real-time traffic monitoring to advanced content curation, take full command of the multiverse.
+                    </p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface">Real-time engagement analytics</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface">Automated copyright &amp; compliance engine</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface">Advanced moderation &amp; community control</span>
+</li>
+</ul>
+<button class="px-8 py-3 rounded-lg font-bold border-2 border-outline text-on-surface hover:border-primary hover:text-primary transition-all">
+                        View Admin Features
+                    </button>
+</div>
+<div class="relative">
+<div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
+<div class="absolute -bottom-12 -right-12 w-64 h-64 bg-secondary/20 rounded-full blur-[80px]"></div>
+<!-- Glassmorphic Dashboard Preview -->
+<div class="glass-panel p-6 rounded-2xl shadow-2xl relative z-10 scale-100 lg:scale-110">
+<div class="flex items-center justify-between mb-8">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+</div>
+<div class="text-label-sm text-on-surface-variant">ADMIN DASHBOARD v2.4</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-white/5 p-4 rounded-lg">
+<div class="text-on-surface-variant text-[10px] mb-1">LIVE VIEWERS</div>
+<div class="text-2xl font-bold text-primary">124.8K</div>
+</div>
+<div class="bg-white/5 p-4 rounded-lg">
+<div class="text-on-surface-variant text-[10px] mb-1">CDN HEALTH</div>
+<div class="text-2xl font-bold text-tertiary">99.9%</div>
+</div>
+</div>
+<div class="bg-white/5 h-32 rounded-lg p-4 relative overflow-hidden">
+<div class="absolute bottom-0 left-0 w-full h-1/2 flex items-end gap-1 px-2">
+<div class="w-full bg-primary h-[40%] rounded-t-sm"></div>
+<div class="w-full bg-primary h-[60%] rounded-t-sm"></div>
+<div class="w-full bg-primary h-[55%] rounded-t-sm"></div>
+<div class="w-full bg-primary h-[80%] rounded-t-sm"></div>
+<div class="w-full bg-primary h-[70%] rounded-t-sm"></div>
+<div class="w-full bg-primary h-[95%] rounded-t-sm"></div>
+</div>
+<div class="text-label-sm text-on-surface-variant mb-2">GLOBAL TRAFFIC FLOW</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-32 px-margin-mobile text-center relative overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-[#0F0F0F]"></div>
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#ff4993 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+</div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">JOIN THE STREAM</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">Get notified about upcoming premieres, limited-edition merch, and exclusive community events. No filler, just pure octane.</p>
+<form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto" onsubmit="event.preventDefault()">
+<input class="flex-grow bg-surface-container-high border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary rounded-lg text-on-surface px-6 py-4" placeholder="Your email address" type="email"/>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all whitespace-nowrap">
+                        Sign Up Now
+                    </button>
+</form>
+<p class="text-[10px] text-on-surface-variant mt-4 uppercase tracking-widest font-label-sm">SECURE • FAST • OFFICIAL</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-gutter flex flex-col items-center gap-6 bg-surface-container-lowest border-t border-outline-variant">
+<span class="font-display-lg text-headline-md text-primary font-extrabold tracking-tighter">ANI-STREAM</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-on-surface-variant hover:text-secondary transition-colors text-body-md font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors text-body-md font-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors text-body-md font-body-md" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors text-body-md font-body-md" href="#">Contact Us</a>
+</div>
+<div class="flex gap-6 mt-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="forum">forum</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="movie">movie</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4 text-center opacity-60">© 2024 ANI-STREAM. High-Octane Streaming Experience.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface-container/80 backdrop-blur-2xl border-t border-white/5 md:hidden">
+<div class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-full px-4 py-1">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="bookmarks">bookmarks</span>
+<span class="font-label-sm text-label-sm">Watchlist</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<script>
+        // Smooth scroll and micro-interactions
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const heroImg = document.querySelector('section img');
+            if (heroImg) {
+                heroImg.style.transform = `translateY(${scroll * 0.4}px) scale(1.1)`;
+            }
+        });
+
+        // Dashboard Animation Mockup
+        const dashboardBars = document.querySelectorAll('.rounded-t-sm');
+        setInterval(() => {
+            dashboardBars.forEach(bar => {
+                const height = Math.floor(Math.random() * 80) + 20;
+                bar.style.height = `${height}%`;
+                bar.style.transition = 'height 0.8s ease-in-out';
+            });
+        }, 1500);
+    </script>
+</body></html>

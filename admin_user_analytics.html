@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniControl - User Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#b9f1ff",
+                    "on-tertiary-fixed-variant": "#005304",
+                    "surface": "#131313",
+                    "surface-variant": "#353534",
+                    "tertiary-container": "#16a81b",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-fixed": "#a5eeff",
+                    "on-background": "#e5e2e1",
+                    "background": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-bright": "#3a3939",
+                    "outline-variant": "#5a3f47",
+                    "secondary-fixed-dim": "#00daf8",
+                    "on-primary": "#650032",
+                    "primary-fixed": "#ffd9e2",
+                    "primary-container": "#ff4993",
+                    "on-primary-container": "#59002b",
+                    "tertiary-fixed-dim": "#5de151",
+                    "on-tertiary-fixed": "#002201",
+                    "on-secondary-container": "#005f6d",
+                    "inverse-primary": "#ba0060",
+                    "on-error": "#690005",
+                    "tertiary": "#5de151",
+                    "primary-fixed-dim": "#ffb1c7",
+                    "surface-dim": "#131313",
+                    "inverse-on-surface": "#313030",
+                    "error-container": "#93000a",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "outline": "#aa8890",
+                    "on-tertiary-container": "#003202",
+                    "inverse-surface": "#e5e2e1",
+                    "on-tertiary": "#003a02",
+                    "on-surface-variant": "#e2bdc6",
+                    "tertiary-fixed": "#7afe6a",
+                    "surface-container": "#201f1f",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#ffb1c7",
+                    "on-primary-fixed-variant": "#8e0048",
+                    "surface-container-highest": "#353534",
+                    "on-secondary-fixed": "#001f25",
+                    "primary": "#ffb1c7",
+                    "on-primary-fixed": "#3f001c",
+                    "secondary-container": "#00e0ff",
+                    "on-secondary": "#00363f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Sora"],
+                    "display-lg-mobile": ["Sora"],
+                    "display-lg": ["Sora"],
+                    "label-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-pink:focus {
+            box-shadow: 0 0 15px rgba(255, 177, 199, 0.4);
+            border-color: #ffb1c7;
+        }
+        .scale-105-hover:hover {
+            transform: scale(1.02);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 4px;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(255, 177, 199, 0.2) 0%, rgba(255, 177, 199, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="h-20 w-full fixed top-0 z-40 bg-surface/60 backdrop-blur-xl border-b border-white/5 flex justify-between items-center pl-72 pr-margin-desktop w-full">
+<div class="flex items-center gap-gutter">
+<h1 class="font-headline-md text-headline-md text-primary font-extrabold">Admin Control Center</h1>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Direct Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Audit Logs</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<input class="bg-surface-container border-none rounded-full px-6 py-2 w-64 text-body-md focus:ring-2 focus:ring-primary transition-all" placeholder="Search analytics..." type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-all text-secondary"><span class="material-symbols-outlined">notifications</span></button>
+<button class="active:scale-95 transition-all text-secondary"><span class="material-symbols-outlined">dark_mode</span></button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="Admin Profile" data-alt="A professional studio portrait of a high-level technology administrator in a dark, futuristic office setting. The lighting is moody with subtle neon pink highlights reflecting off a glass desk. The aesthetic is clean, corporate, and premium, mirroring the sophisticated dark-mode dashboard theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVGWrmiS39EWrgTGf6Qzxe42r6P8Re-DA2EetRrPoPrZlTNTzJsnDVaSLmsLgTkBT9CGAUA61HlMD6gndGhTbWDIy8yfWaxNF8QtmZa_ykfFE1fUuQRTBlkhSV8wRv0QyaKUdh4cARd88lfLvJvw47UuJsbH-JmW0cu8JgnsyEBVEeOVwGrghH0Nb5uY2KDMKLwR94oaEV5BL2d2s-bpLgVRuByjZbhoxAjJbg6AfwrOjVU22W65fYrVhqAEoCETh4x5SkBNppyVE9"/>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold hover:brightness-110 active:scale-95 transition-all">Deploy Update</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container/60 backdrop-blur-xl border-r border-white/10 shadow-2xl z-50 flex flex-col h-full py-8 gap-unit">
+<div class="px-6 mb-8">
+<div class="font-headline-md text-headline-md text-primary font-bold tracking-tighter mb-1">AniControl</div>
+<div class="text-on-surface-variant text-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                Global Admin
+            </div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">subscriptions</span>
+<span>Library Management</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-primary font-bold border-r-4 border-primary bg-primary/5" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>User Analytics</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span>Content Moderation</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant font-medium hover:bg-white/5 hover:text-secondary transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary-container text-on-primary-container font-bold py-4 rounded-xl flex items-center justify-center gap-2 scale-105-hover transition-transform duration-200">
+<span class="material-symbols-outlined">campaign</span>
+                Broadcast Alert
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pl-64 pt-24 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-margin-desktop">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">User Analytics</h2>
+<p class="text-on-surface-variant font-body-lg">Real-time performance metrics and community health monitoring.</p>
+</div>
+<div class="flex gap-4">
+<div class="glass-card px-4 py-2 rounded-lg flex items-center gap-3">
+<span class="text-label-sm uppercase opacity-50">Timeframe</span>
+<select class="bg-transparent border-none text-primary font-bold focus:ring-0 p-0 cursor-pointer">
+<option>Last 30 Days</option>
+<option>Last 7 Days</option>
+<option>Last 24 Hours</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-12 gap-gutter mb-gutter">
+<!-- Retention Chart -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-8 min-h-[400px] flex flex-col">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-md text-on-surface">User Retention</h3>
+<p class="text-on-surface-variant">Monthly Cohort Analysis</p>
+</div>
+<div class="text-right">
+<span class="text-tertiary font-bold text-2xl">+12.4%</span>
+<p class="text-label-sm opacity-50">vs last period</p>
+</div>
+</div>
+<div class="flex-1 w-full relative group">
+<!-- Simulated Chart Representation -->
+<div class="absolute inset-0 flex items-end gap-4 px-2">
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[40%] hover:bg-primary/40 transition-all cursor-help relative group/bar">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface px-2 py-1 rounded text-xs opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap">Week 1: 42%</div>
+</div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[55%] hover:bg-primary/40 transition-all cursor-help"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[45%] hover:bg-primary/40 transition-all cursor-help"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[70%] hover:bg-primary/40 transition-all cursor-help"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg h-[85%] hover:bg-primary/40 transition-all cursor-help"></div>
+<div class="flex-1 bg-primary rounded-t-lg h-[92%] hover:brightness-110 transition-all cursor-help"></div>
+</div>
+<div class="absolute bottom-0 w-full h-px bg-white/10"></div>
+</div>
+</div>
+<!-- DAU Quick Stats -->
+<div class="col-span-12 lg:col-span-4 grid gap-gutter">
+<div class="glass-card rounded-xl p-6 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-4xl text-secondary mb-2">person_celebrate</span>
+<div class="text-4xl font-bold text-on-surface">1.2M</div>
+<div class="text-on-surface-variant font-label-sm">Daily Active Users</div>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col justify-center items-center text-center border-l-4 border-tertiary">
+<span class="material-symbols-outlined text-4xl text-tertiary mb-2">trending_up</span>
+<div class="text-4xl font-bold text-on-surface">84.2%</div>
+<div class="text-on-surface-variant font-label-sm">Conversion Rate</div>
+</div>
+</div>
+</div>
+<!-- Second Row: Geo & Top Fans -->
+<div class="grid grid-cols-12 gap-gutter mb-gutter">
+<!-- Geographic Distribution -->
+<div class="col-span-12 md:col-span-7 glass-card rounded-xl p-8">
+<h3 class="font-headline-md text-on-surface mb-6">Geographic Distribution</h3>
+<div class="aspect-video bg-surface-container-low rounded-lg relative overflow-hidden group">
+<img alt="Global Heatmap" class="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A stylized, cinematic satellite view of a world map at night with glowing clusters of light representing high user density areas. The color palette is dominated by deep indigo and vibrant neon sakura pink data points, matching the dashboard's premium dark aesthetic. The lighting is low-key with a focus on digital connectivity lines connecting major global hubs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvy1dudgvVmuo0W92LZ-GT5MiSmjF-o4ZMDOVhUcJdQmeOAEKPmtwIRb4I7dFsUqkUxsczpEZETZPrnUSJYtpfpjtrYDXah5N8lvEVB7AKsLSkN13cSE1PXDrZdpwyUVw7SFxnAtcsfbSWcY_4JcIsG5NwtW5uUmJ8g9vI0fUr-SXJUqTaUPnCvcNx4hP4FcZPydOqkGgmP8tKzQVu7Wip-5k5l7fLGSfHYa8MDMmpOThsIVIhPisC45GrKFUyJGXYCWoxJk3irjgA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-label-sm">Japan (34%)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-label-sm">United States (28%)</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-label-sm">Brazil (12%)</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="text-label-sm">Other Regions (26%)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Contributing Fans -->
+<div class="col-span-12 md:col-span-5 glass-card rounded-xl p-8 flex flex-col">
+<h3 class="font-headline-md text-on-surface mb-6">Top Contributing Fans</h3>
+<div class="space-y-4 flex-1">
+<!-- Fan Item -->
+<div class="flex items-center gap-4 p-3 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 pb-4">
+<div class="relative">
+<img alt="User Avatar" class="w-12 h-12 rounded-full" data-alt="Close-up avatar of a male anime enthusiast with colorful hair and futuristic glasses, styled in high-detail digital illustration. The background is a soft-focus collection of anime figurines. The lighting is warm and cinematic, emphasizing the persona of a dedicated community contributor within an exclusive digital ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE-p2qnB3XmdY1-EgPLnMvk_wXfBn4uKwIZxW7PC_dkY6Zo8HiE6K8lv9oBGdLBtUIyjp1rJVyhCZBziHVmwcOqvgpWrHZEovbVOf_ZfdV8OqE9O8Fz4e2CrALXNtpDMATqik3LqM_aw43eoBgg-3zSRNHics6fc9JtYruHElOeJbKcdTKlhNN0vaV9PWMKrr6nZBCwvtewZCtr6UUCFbtfiFupiCqTQu2KubGiCEskIQLR5ZgVOBHFt-ZLqsradsN9A_wDXHZ0tjM"/>
+<span class="absolute -bottom-1 -right-1 bg-tertiary text-on-tertiary text-[10px] font-bold px-1 rounded">PRO</span>
+</div>
+<div class="flex-1">
+<div class="text-on-surface font-bold">@KenjiSama</div>
+<div class="text-label-sm text-on-surface-variant">1,240 Episodes Reviewed</div>
+</div>
+<div class="text-right">
+<div class="text-secondary font-mono text-sm">45.2k XP</div>
+</div>
+</div>
+<!-- Fan Item -->
+<div class="flex items-center gap-4 p-3 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 pb-4">
+<div class="relative">
+<img alt="User Avatar" class="w-12 h-12 rounded-full" data-alt="Vibrant portrait of a female anime fan with neon-dyed hair, captured in a cinematic close-up with a shallow depth of field. Her expression is one of excitement and passion. The overall aesthetic is highly polished and professional, reflecting the premium quality of the streaming service she contributes to." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApDNbW5VL9woIfdxc53xK7YwB7rnuWCleuq6R-BjX1vN68_E8fqKWJPRb1ryruwXZja7gbgyQEsmpiqwA2z6mxXWuY0CSVNPVY1imDXWA4_G9H0Y-li0aw5H4uXn6XbMfP2Lo8QCn1801v5oU_elivtyT-_4sYj9D_VzwZdfcSpSR5f4F_IOqMEbSe1xjRohg79fg8wnlyQ5OMrGiwddaBZPDtnfdREbXrW0xolPuYVy92fZLROEaUgpTNSuk4wE3JJDbTSL-Bf_1O"/>
+<span class="absolute -bottom-1 -right-1 bg-primary text-on-primary text-[10px] font-bold px-1 rounded">MVP</span>
+</div>
+<div class="flex-1">
+<div class="text-on-surface font-bold">@HaruVibe</div>
+<div class="text-label-sm text-on-surface-variant">982 Clips Shared</div>
+</div>
+<div class="text-right">
+<div class="text-secondary font-mono text-sm">38.1k XP</div>
+</div>
+</div>
+<!-- Fan Item -->
+<div class="flex items-center gap-4 p-3 hover:bg-white/5 rounded-lg transition-colors">
+<div class="relative">
+<img alt="User Avatar" class="w-12 h-12 rounded-full" data-alt="Portrait of a creative male digital artist who is a top contributor to an anime community. The image is styled as a professional headshot with creative lighting that uses a split of neon blue and warm amber. The mood is sophisticated and exclusive, emphasizing the high-status roles within the digital platform's hierarchy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPQx2XmRAraaqsBunhREWK069Cg2B0oN3OjI_cS5v_9y1tSRHcgSHnXxOyXxv7jj1E-TtpfIpX7pH7xje0nWOPbGx8g9gLEKik7TId9OL2HlFPjDD_8dKyi8RrtmFA6H0bBHmV40PdR67fGhzvAaQPjEk0BdjKsfLopuU7ChMGd437ZyDZNZlHqOwuwQqrEmk-i1gfoCq3wbhkpQt68rV_H2Y5myyjSMw27NSSqlYS0dR9W3Y1HMWpGGL-1qstVSpcQj7AXWL040FB"/>
+</div>
+<div class="flex-1">
+<div class="text-on-surface font-bold">@PixelRonin</div>
+<div class="text-label-sm text-on-surface-variant">2,400 Art Submissions</div>
+</div>
+<div class="text-right">
+<div class="text-secondary font-mono text-sm">32.4k XP</div>
+</div>
+</div>
+</div>
+<button class="mt-4 text-primary font-bold hover:underline text-sm w-full text-center">View Full Leaderboard</button>
+</div>
+</div>
+<!-- Bottom Row: Moderation Flags & Broadcast -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Moderation Flags -->
+<div class="col-span-12 md:col-span-8 glass-card rounded-xl p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-on-surface">Suspicious Behavior Flags</h3>
+<span class="bg-error/20 text-error px-3 py-1 rounded-full text-label-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">warning</span>
+                            12 Urgent Alerts
+                        </span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="border-b border-white/10">
+<tr>
+<th class="pb-4 text-label-sm text-on-surface-variant font-medium">User ID</th>
+<th class="pb-4 text-label-sm text-on-surface-variant font-medium">Flag Reason</th>
+<th class="pb-4 text-label-sm text-on-surface-variant font-medium">Risk Score</th>
+<th class="pb-4 text-label-sm text-on-surface-variant font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 font-mono text-sm">#USR_88921</td>
+<td class="py-4">Multiple VPN IP switches</td>
+<td class="py-4">
+<div class="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-error w-[85%]"></div>
+</div>
+</td>
+<td class="py-4 text-right">
+<button class="text-error hover:bg-error/10 px-3 py-1 rounded transition-colors text-sm font-bold">Investigate</button>
+</td>
+</tr>
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 font-mono text-sm">#USR_44501</td>
+<td class="py-4">Rapid metadata harvesting</td>
+<td class="py-4">
+<div class="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-error w-[70%]"></div>
+</div>
+</td>
+<td class="py-4 text-right">
+<button class="text-error hover:bg-error/10 px-3 py-1 rounded transition-colors text-sm font-bold">Investigate</button>
+</td>
+</tr>
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 font-mono text-sm">#USR_33211</td>
+<td class="py-4">Duplicate account fingerprint</td>
+<td class="py-4">
+<div class="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-[35%]"></div>
+</div>
+</td>
+<td class="py-4 text-right">
+<button class="text-secondary hover:bg-secondary/10 px-3 py-1 rounded transition-colors text-sm font-bold">Review</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Broadcast Panel -->
+<div class="col-span-12 md:col-span-4 glass-card rounded-xl p-8 bg-gradient-to-br from-primary/10 to-transparent">
+<h3 class="font-headline-md text-on-surface mb-4">Quick Broadcast</h3>
+<p class="text-on-surface-variant mb-6 text-sm">Send a critical update or system notification to all 1.2M active users.</p>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-label-sm text-on-surface-variant uppercase">Alert Type</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg bg-surface-container border border-primary/40 text-primary font-bold text-xs uppercase">System</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container border border-white/5 text-on-surface-variant text-xs uppercase hover:border-white/20">Maintenance</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container border border-white/5 text-on-surface-variant text-xs uppercase hover:border-white/20">Promo</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm text-on-surface-variant uppercase">Message Content</label>
+<textarea class="w-full h-32 bg-surface-container border-white/10 rounded-xl glow-pink text-sm focus:ring-0 resize-none p-4" placeholder="Enter broadcast message..."></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 shadow-lg shadow-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined">send</span>
+                            Transmit Broadcast
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating UI Element for Status -->
+<div class="fixed bottom-8 right-8 flex flex-col gap-4 items-end z-50">
+<div class="glass-card px-4 py-2 rounded-full flex items-center gap-3 border border-tertiary/30 animate-pulse" id="live-indicator">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-label-sm font-bold text-tertiary">LIVE TRACKING ACTIVE</span>
+</div>
+</div>
+<script>
+        // Micro-interaction for the "Live" indicator and some basic hover logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const broadcastBtn = document.querySelector('button:has(span:contains("send"))');
+            if (broadcastBtn) {
+                broadcastBtn.addEventListener('click', () => {
+                    alert('Broadcast system requires 2FA authorization from the Security Lead.');
+                });
+            }
+
+            // Simple parallax-like mouse effect for the map container
+            const mapContainer = document.querySelector('.aspect-video');
+            if (mapContainer) {
+                mapContainer.addEventListener('mousemove', (e) => {
+                    const { left, top, width, height } = mapContainer.getBoundingClientRect();
+                    const x = (e.clientX - left) / width - 0.5;
+                    const y = (e.clientY - top) / height - 0.5;
+                    const mapImg = mapContainer.querySelector('img');
+                    mapImg.style.transform = `scale(1.1) translate(${x * 20}px, ${y * 20}px)`;
+                });
+                mapContainer.addEventListener('mouseleave', () => {
+                    const mapImg = mapContainer.querySelector('img');
+                    mapImg.style.transform = `scale(1) translate(0, 0)`;
+                });
+            }
+        });
+
+        // Add contains selector support for older query engines
+        window.addEventListener('load', () => {
+            const spans = document.querySelectorAll('.material-symbols-outlined');
+            spans.forEach(span => {
+                if (span.textContent === 'send') {
+                    // Logic already handled in button listener
+                }
+            });
+        });
+    </script>
+</body></html>

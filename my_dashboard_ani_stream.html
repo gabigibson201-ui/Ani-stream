@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANI-STREAM | User Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 177, 199, 0.4);
+            transform: scale(1.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffb1c7",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#201f1f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#002201",
+                        "on-primary-fixed": "#3f001c",
+                        "on-primary": "#650032",
+                        "on-surface-variant": "#e2bdc6",
+                        "primary-fixed": "#ffd9e2",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "inverse-primary": "#ba0060",
+                        "secondary-container": "#00e0ff",
+                        "surface": "#131313",
+                        "on-tertiary-fixed-variant": "#005304",
+                        "tertiary-fixed-dim": "#5de151",
+                        "secondary-fixed": "#a5eeff",
+                        "surface-variant": "#353534",
+                        "outline": "#aa8890",
+                        "surface-bright": "#3a3939",
+                        "outline-variant": "#5a3f47",
+                        "secondary": "#b9f1ff",
+                        "surface-tint": "#ffb1c7",
+                        "primary-fixed-dim": "#ffb1c7",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "tertiary-fixed": "#7afe6a",
+                        "secondary-fixed-dim": "#00daf8",
+                        "tertiary": "#5de151",
+                        "on-primary-fixed-variant": "#8e0048",
+                        "background": "#131313",
+                        "on-background": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#005f6d",
+                        "on-tertiary": "#003a02",
+                        "on-secondary": "#00363f",
+                        "error-container": "#93000a",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#003202",
+                        "primary-container": "#ff4993",
+                        "tertiary-container": "#16a81b",
+                        "on-secondary-fixed": "#001f25",
+                        "on-primary-container": "#59002b",
+                        "on-error": "#690005",
+                        "surface-container-low": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Sora"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface/60 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center gap-12">
+<h1 class="font-display-lg text-headline-md font-extrabold text-primary tracking-tighter">ANI-STREAM</h1>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Browse</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Seasonal</a>
+<a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors" href="#">Movies</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">My List</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex bg-surface-container-high rounded-full px-4 py-2 items-center gap-3 border border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder-on-surface-variant/50" placeholder="Search anime..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary transition-colors cursor-pointer">
+<img alt="User Profile" data-alt="A clean, minimalist high-quality close-up portrait of a digital professional avatar against a dark studio background. The lighting is dramatic and cinematic, with soft pink and blue rim light reflecting the brand's aesthetic. The overall mood is sophisticated and premium, tailored for a high-end streaming service experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4KZ7x5_G41To63_qMNZ-dDp96SM2s7poR77U2iKW9w7qj7aY1Xe1kYZffFoySWx2kSGAmOMPDhGVX-oAoplk6XpY4es5eWVPdiV8hBikIy8Yq-qFvuJSVDbbVR0OSy3V8_R6ZbYryrELRTeyOdGTutETcCpri3YHXvQXygEodQkjVs_9YVZ8MJJnSE8cMyFA_BePZYaj3t3hxQV8WvqOB-U2muBfKfxbHOOnfcBI5f9BVbIleP6qjc8ClrtvqDVw3PdiqfiKxMDM3"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 md:pb-12 px-gutter max-w-container-max mx-auto">
+<!-- Welcome Hero Section -->
+<section class="mb-12">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<span class="font-label-sm text-primary uppercase tracking-widest mb-2 block">Personal Dashboard</span>
+<h2 class="font-display-lg text-4xl md:text-5xl mb-2">Welcome back, Kaito</h2>
+<p class="text-on-surface-variant max-w-xl">You've watched 12 episodes this week. You're just 2 episodes away from completing 'Cyberpunk: Edgerunners'.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-bold hover:scale-105 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined">play_arrow</span> Resume Watching
+                    </button>
+</div>
+</div>
+</section>
+<!-- Recent History Carousel -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">history</span>
+                    Recent History
+                </h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-full border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 rounded-full border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="flex gap-6 overflow-x-auto hide-scrollbar pb-4 -mx-gutter px-gutter">
+<!-- Card 1 -->
+<div class="min-w-[300px] md:min-w-[400px] group cursor-pointer">
+<div class="relative aspect-video rounded-xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Cinematic wide shot of a futuristic neon-drenched cityscape at night, featuring towering skyscrapers with holographic advertisements and flying vehicles. The color palette is dominated by electric blues and vibrant sakura pinks, creating a high-octane cyberpunk atmosphere typical of high-budget Japanese animation. Deep blacks provide intense contrast and depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPXaJ18t9k_-rSybssLzckgwhwn8uwMvIOKRZPyU_982zbf96eEIXjCCV8ZzBs3Slm-EmeFHgEO5Bn03Ygk0ngRIFKNmYYRlzI9XIBtwc-Jpu2yuIYKSkMcREpvsiRM_cHm84tj0ssGKlG-az3WKDU7ZodMd8liYuCSIHNfqSc4e-PIe3fKVEiwfiOLUtii_VkXzDoa03i6adc06U9Wr6SSevfaGyAcJP37ji-kui6RcFZr6oGzX9NXAH01iJrY4xiWWBJ6aCNsd6H"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-bold text-lg">Neon Genesis: Rebirth</h4>
+<p class="text-sm text-on-surface-variant">Episode 24 • 18:42 / 24:00</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">play_circle</span>
+</div>
+<div class="w-full bg-white/20 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[75%] shadow-[0_0_10px_rgba(255,177,199,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[300px] md:min-w-[400px] group cursor-pointer">
+<div class="relative aspect-video rounded-xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A lush, ethereal mountain landscape during the golden hour, with floating islands and cascading waterfalls that glow with a magical green energy. The art style is painterly and detailed, reminiscent of high-end fantasy anime backgrounds. Soft light filters through cherry blossom petals, with a color palette of emerald greens and soft pinks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtXzotXP5atZ0R6i_KPb036Cvo7kKAr-RiC6rx8UUkOorH4pEt1p5BFV8ksLn6J60e7PN_9BceSgKF61jfxkfCFiKkBcHmElYvyYw1Hgq0hZVgbW931S3xa6WXoF6RCJn89H0ftHZ4W257uT3z0wO-AcFLRQOCD_0vDsvzOxpCq69x4ASDYNucHv3a0_RtpnxYfOjwrSpiVqDlDSwznkhVaarl5W8pTDQfvX2f_SYBjt35t_Tj73hvqXQbw9JS1buwtaSwPUbiEncr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-bold text-lg">Spirit of the Mist</h4>
+<p class="text-sm text-on-surface-variant">Episode 08 • 05:10 / 22:30</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">play_circle</span>
+</div>
+<div class="w-full bg-white/20 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[22%] shadow-[0_0_10px_rgba(255,177,199,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[300px] md:min-w-[400px] group cursor-pointer">
+<div class="relative aspect-video rounded-xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Dynamic action shot of a samurai silhouette standing in a field of red spider lilies under a massive blood-red moon. The style is stark and graphic, utilizing high-contrast lighting with deep ink blacks and intense crimson accents. The mood is solemn and intense, capturing a pivotal moment in an epic historical anime drama." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2UhH-Zk_ufB7x47kbIbLmnFejcOT9f9I7ecUu3m2bsvl9ZvtGNfo0JOdGG2P7BrmWlSMg5GV0rRKJZWpkcMDJFQBMXE8mAN0aZaCPPkk8Y32XWz9BvNHfwKnXC5FZ82VrOoKZJqzqLMDX4c0Uql7d1IJh4caYdCMJX8cbtCBJ_O5k_UHT8OCSqij7ccb1G7m0ovpExmB7CsKPO3i95im6LfE_Om7PW1jE6QbLvOWnXJbBqbfEaaBsN_IDiXeB7TmwKSvHDzVjHyub"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-bold text-lg">Shadow of the Blade</h4>
+<p class="text-sm text-on-surface-variant">Episode 12 • 21:00 / 21:00</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">replay</span>
+</div>
+<div class="w-full bg-white/20 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Area: Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: My Watchlist (Bento Main) -->
+<div class="lg:col-span-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<h3 class="font-headline-md flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bookmarks</span>
+                        My Watchlist
+                    </h3>
+<div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant/30">
+<button class="px-4 py-1.5 rounded-md text-sm font-bold bg-primary text-on-primary shadow-lg">Watching</button>
+<button class="px-4 py-1.5 rounded-md text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Plan to Watch</button>
+<button class="px-4 py-1.5 rounded-md text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Completed</button>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
+<!-- Watchlist Item 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-high transition-all">
+<div class="aspect-[2/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Vertical poster art for a psychological anime, featuring an abstract composition of mirrors and fractured glass reflecting a solitary character in a dark urban alley. The lighting is cool and desaturated, with sharp highlights and deep shadows. Professional, clean layout with vibrant teal and magenta glowing accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2xmuNhiRsdJNR1N25nt6e6sM__kicPNpu8cqlrAZe7ia2lyqiq48jWrrOuZGgSCML_pkDIZI8wre29qiXXfjoSC7LOqqF9L2ICrtVKV7k9zoRaxZIpzU0vWePlJdr6CTGTGMTjsIxsTnXnu2lc-R2DdlsVf-8HHV33JB3BX5h2RCi6TI27QX8OFN1miYlCPkSsmjHDX4cZvIG6x9FyunAEEDeQoy5TIyLGFP-6KVdZa_ockQrkQDDLhQMeFiG4XVXYsgbF-2McVB7"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<h5 class="font-bold text-white mb-1">Code Geass: Z of Recapture</h5>
+<p class="text-xs text-on-primary-fixed mb-3">S1 • Episode 5</p>
+<button class="w-full bg-primary text-on-primary py-2 rounded-md text-xs font-bold uppercase tracking-tighter">Continue</button>
+</div>
+<div class="absolute top-2 right-2">
+<span class="bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold text-primary border border-primary/20">TRENDING</span>
+</div>
+</div>
+<!-- Watchlist Item 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-high transition-all">
+<div class="aspect-[2/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Vertical anime poster featuring a stylized futuristic classroom where the windows reveal a star-filled nebula instead of the sky. The art is clean and high-contrast, with a mix of warm classroom lighting and cold cosmic blues. The composition is asymmetrical and modern, emphasizing a sense of wonder and isolation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-aYbCdbJscNCe-HW_C4jnDk5Qjp6M84uS7YgB1imL_2Cd53Ht9IFcVvTq2CVUsHyJe6x3z5bonKGkmxPbM-mWDyleukhPmJx-D05u4JGr5YD7FMNyilgI1NjtCSg8K3kZ_u-JK7TNHnzCU1fB344ldX5JGNgjIoFQE1LVRIRkYLRQOm_rRoZMdCqV1FFU-eP0KXvANNKNvFzKWEHw7W-8bHTNwW72P8mJdUzLml0oMkVw7ZkJem1J8kbPFa2_PcWYUeID5PSpaopu"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<h5 class="font-bold text-white mb-1">Stellar Academy</h5>
+<p class="text-xs text-on-primary-fixed mb-3">S2 • Episode 14</p>
+<button class="w-full bg-primary text-on-primary py-2 rounded-md text-xs font-bold uppercase tracking-tighter">Continue</button>
+</div>
+<div class="absolute top-2 right-2">
+<span class="bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold text-secondary border border-secondary/20">NEW EPISODE</span>
+</div>
+</div>
+<!-- Watchlist Item 3 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-high transition-all">
+<div class="aspect-[2/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Vibrant anime-style poster of a high-speed racing scene on a vertical track. The colors are explosive, featuring streaks of neon light and motion blur. The aesthetic is extremely polished and premium, with a focus on metallic textures and glowing engine components. High-octane and immersive atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYK1_ksRCBSOBV1jTgV5TB24mUGbCfEjjf1zJ4tPmhuUtF6TQT-qXNxpf0lEEEdteSXSWcPH3oCtN5fvX4mi2CHjJORxK-jv4trHqjI6FHTvE0aVC974UELWASljzb_etoAELi5lbYB-MpBzzCsTjKJhK4sqWmHYUhAF-W9MdKR55pHOACD4cGXwqF7wpLdsH8Qb9P96xjg2RKQu6ni45wMN6M9NUURbCTsa3_0Lcf2cxBb430DPIwQeOXKQfsYwYXREmYvHHSkZd4"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<h5 class="font-bold text-white mb-1">Overdrive Nitro</h5>
+<p class="text-xs text-on-primary-fixed mb-3">S1 • Episode 1</p>
+<button class="w-full bg-primary text-on-primary py-2 rounded-md text-xs font-bold uppercase tracking-tighter">Start</button>
+</div>
+</div>
+<!-- Additional Items for grid feel -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-high transition-all">
+<div class="aspect-[2/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A hauntingly beautiful anime landscape featuring a collapsed gothic cathedral reclaimed by giant, glowing blue flowers. The lighting is melancholic, with soft moonbeams cutting through the dust. The color palette uses deep navy and electric blue highlights against dark grey stone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyUd5rMlGSfT0dmKYJQMwquU3R9kGjHNgaAnCkNi3MrN_jMbNtYOYQ-JRmHpirWbxdovSAUTNb3WMY34A0ByUAqEAon67sMBxY5IQS-w711B1hA4AHJeMEfNRO_0fZDAj6hIP3Y4lFKr7SB7oAvrreMcxImWcuC0ciyBIWi0XZllsbhVEIQ-smj-VZ8gJ4M8-ssx5pOxjPs5DOpzqNTW3TpzrNbx3UsSQGVks-DEL3DC54qxSN0TuMBrWn-OqHoTv7ywkorSnV1rDR"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<h5 class="font-bold text-white mb-1">Echoes of Ruin</h5>
+<p class="text-xs text-on-primary-fixed mb-3">S1 • Episode 10</p>
+<button class="w-full bg-primary text-on-primary py-2 rounded-md text-xs font-bold uppercase tracking-tighter">Continue</button>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-high transition-all">
+<div class="aspect-[2/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Dynamic shot of a futuristic kitchen where food is being prepared by robotic arms and hovering drones. The art style is crisp and modern, with a vibrant color palette of orange, white, and chrome. The atmosphere is warm yet technologically advanced, typical of a slice-of-life sci-fi anime." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiB9yKck-e-zdtHnCVdjqDG0X-oIj0Cb0ZQlMA7UWrf8I951ys1kWlg7dVIgymUsKg7b0NjII6cOYt8C8luAKLcSANRgRPm6ImD9Yz_SveueUtrXljFZbaepzWpL9_Cyw4GwU2F_MP6ZR7p61a8i8DIHZJrHz4uDbk1_SRnTX8y_DjwrOUuzI4cUHp2l27C0KlwqA5WT1Ir_1iK_OjewCcpCz2j6fKxjqcwU1wOcuTwcVEaUNFq1S6KCIK08AtVMzKUIOWoSpGYJr9"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<h5 class="font-bold text-white mb-1">Cyber Chef</h5>
+<p class="text-xs text-on-primary-fixed mb-3">S3 • Episode 2</p>
+<button class="w-full bg-primary text-on-primary py-2 rounded-md text-xs font-bold uppercase tracking-tighter">Continue</button>
+</div>
+</div>
+<!-- View More Slot -->
+<div class="aspect-[2/3] border-2 border-dashed border-outline-variant/30 rounded-xl flex flex-col items-center justify-center text-on-surface-variant hover:border-primary/50 hover:text-primary transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-4xl mb-2 group-hover:scale-110 transition-transform">add_circle</span>
+<p class="font-label-sm">Browse More</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar (Recommendations & Account) -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Personalized For You -->
+<div class="glass-card rounded-2xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-headline-md text-lg">For You</h4>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="space-y-4">
+<!-- Recommendation 1 -->
+<div class="flex gap-4 group cursor-pointer">
+<div class="w-20 h-28 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A stylized digital painting of a girl sitting on a train looking out at a fantastical sunset with multiple suns. The style is heavily inspired by Makoto Shinkai films, with intense attention to lighting, lens flares, and vibrant oranges and purples. Cinematic and emotional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzsndyTO9N3qMGZY5KT8Fbi4SnJNmKqaS_ev9c_EBhY-QeW9qq2K-EjO3YRE2zDokWsIyM0vf3YNRDrvUnrEB3riHUT54PNRRDuaUpu8HRYF89_ZnCHlae0B4ZxvMuswoRNc_UALI7OHUk0EpTd1yyFuJv0nqAo6x0dA_G2xwg6IV2PNpjrJGs_78ZMTxdBKha87Jk_Jijh6ppbIxwctJoGOB3V_6W4vrKOdjIJFN733MUSIoh9Jrv_IwBJTyNs55tICuh-g83A_ar"/>
+</div>
+<div class="flex flex-col justify-center">
+<h5 class="font-bold text-sm mb-1 line-clamp-1 group-hover:text-primary transition-colors">Beyond the Horizon</h5>
+<div class="flex gap-2 mb-2">
+<span class="text-[10px] font-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded text-on-surface-variant">Adventure</span>
+<span class="text-[10px] font-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded text-on-surface-variant">9.2 Score</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Because you watched 'Spirit of the Mist'</p>
+</div>
+</div>
+<!-- Recommendation 2 -->
+<div class="flex gap-4 group cursor-pointer">
+<div class="w-20 h-28 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Abstract anime background art featuring a digital network of glowing lines and geometric patterns in deep blue and turquoise. A central glowing core pulsates with energy, suggesting a sophisticated AI or virtual reality setting. Clean, corporate-modern tech aesthetic with high contrast and sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC59vwgBadQwONxw__SSyoLYt5AfZiRgC6CNmu3rPCZG9JXLRMWppPde8_bZoaxiiTpzK_DkQPtcW9lkNiZfYR8BUIHGeAjTQaWJP6jPm7i4MgiAWc7XQpHG12kFtiWglpRByGdyN3ZnwXsJbjVj5t3_GdfvdrmV2pMu0f9ceC49U7zHQbFBHv6yYgStW55ILZpjTB7nENxBFqZCUSbqvVo1HJr2e3W3P-rOB4Sdc-liYvmFMfbzI38_rlgBQUx8TDbm-UrKD5tGXf6"/>
+</div>
+<div class="flex flex-col justify-center">
+<h5 class="font-bold text-sm mb-1 line-clamp-1 group-hover:text-primary transition-colors">Protocol: ZERO</h5>
+<div class="flex gap-2 mb-2">
+<span class="text-[10px] font-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded text-on-surface-variant">Sci-Fi</span>
+<span class="text-[10px] font-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded text-on-surface-variant">Top 10</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Fans of 'Cyberpunk' also loved this</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-outline-variant/30 rounded-xl text-sm font-bold hover:bg-surface-container transition-colors">View All Recommendations</button>
+</div>
+<!-- Account & Settings Quick Access -->
+<div class="bg-surface-container-low rounded-2xl p-6 border border-white/5">
+<h4 class="font-label-sm text-on-surface-variant uppercase tracking-widest mb-4">Quick Actions</h4>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface hover:bg-primary-container/10 border border-white/5 hover:border-primary/30 transition-all gap-2 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">settings</span>
+<span class="text-xs font-medium">Settings</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface hover:bg-primary-container/10 border border-white/5 hover:border-primary/30 transition-all gap-2 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">payments</span>
+<span class="text-xs font-medium">Billing</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface hover:bg-primary-container/10 border border-white/5 hover:border-primary/30 transition-all gap-2 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">download</span>
+<span class="text-xs font-medium">Offline</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface hover:bg-primary-container/10 border border-white/5 hover:border-primary/30 transition-all gap-2 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">help</span>
+<span class="text-xs font-medium">Support</span>
+</button>
+</div>
+</div>
+<!-- Ad/Promotion Spot -->
+<div class="relative rounded-2xl overflow-hidden h-48 group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A promotional banner image showing a stylized cosmic event with two galaxies colliding in a swirl of violet and orange fire. The image is designed to feel epic and theatrical, with deep blacks at the edges to allow text to pop. The lighting is intensely high-contrast and dramatic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbC5PCpYVnzQh9k8NlXMBtqU8S7Z_nYBefgWcGVo29kVKpf3DLtihgFrsJBouW7iWo3CVCTN3jZPME20gN0FyQVESBZKKEx55hajfRBM4990kN8gr5xf-FLDuS_EApMEs9VBbIGSOXzlcP52_SoUHKUFCNCCCluqdp6tVg1lkVjhQi8aXIq9bI9S96ehfOncebYjmhqWn6KApFqxQM8AKGgMh0AzUT-rg5ogenBHV0lT_1OT4qFAgGPazKe9Gb4QwUdhx65qvnWtaT"/>
+<div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-6">
+<p class="font-label-sm text-secondary mb-1">LIMITED OFFER</p>
+<h4 class="font-bold text-xl mb-3">Upgrade to Premium for 4K Streaming</h4>
+<button class="bg-secondary text-on-secondary px-6 py-2 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(0,218,248,0.5)]">Go Pro</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 md:hidden bg-surface-container/80 backdrop-blur-2xl border-t border-white/5 shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined">bookmarks</span>
+<span class="font-label-sm text-label-sm">Watchlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-12 px-gutter flex flex-col items-center gap-6 bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="font-display-lg text-headline-md text-primary font-extrabold tracking-tighter">ANI-STREAM</span>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Contact Us</a>
+</div>
+<p class="text-on-surface-variant text-sm text-center">© 2024 ANI-STREAM. High-Octane Streaming Experience.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">language</span>
+</a>
+</div>
+</footer>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('.glass-card, .group').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Floating ambient glow effect based on cursor (Optional flavor)
+        const glow = document.createElement('div');
+        glow.className = 'fixed w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0 transition-opacity duration-1000';
+        document.body.prepend(glow);
+
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = `${e.clientX - 200}px`;
+            glow.style.top = `${e.clientY - 200}px`;
+        });
+    </script>
+</body></html>
